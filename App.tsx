@@ -8,14 +8,15 @@ const COLORS = {
   title: '#4c0505',
   highlight: '#cc0000',
   button: '#2d5a27',
-  premiumGradient: 'linear-gradient(135deg, #ff4e00 0%, #ec2f4b 100%)', // Vibrant Red/Orange for "Super Oferta" style
+  premiumGradient: 'linear-gradient(135deg, #ff4e00 0%, #ec2f4b 100%)',
   premiumBorder: '#ec2f4b',
-  vibrantGreen: '#166534' // Darker green for visibility
+  vibrantGreen: '#166534',
+  guaranteeButton: '#3d7a36' // Cor exata do botão do print
 };
 
 const CHECKOUT_BASIC_URL = 'https://indec-digital.mycartpanda.com/checkout/203161373:1';
 const CHECKOUT_COMPLETE_URL = 'https://indec-digital.mycartpanda.com/checkout/203161373:1'; 
-const CHECKOUT_VIP_URL = 'https://indec-digital.mycartpanda.com/checkout/203161373:1'; // Placeholder for the discounted VIP link
+const CHECKOUT_VIP_URL = 'https://indec-digital.mycartpanda.com/checkout/203161373:1'; 
 
 const IMAGES = {
   capa: 'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/Capa_Inicio_ezxhme.webp',
@@ -69,96 +70,91 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen font-poppins text-gray-900 pb-10 overflow-x-hidden bg-[#f3efe5]">
       
-      {/* UPGRADE MODAL - RE-OPTIMIZED FOR SMALL MOBILE SCREENS */}
+      {/* UPGRADE MODAL - DESIGN IGUAL AO EXEMPLO */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-4 bg-black/90 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white w-full max-w-lg rounded-[2rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[90vh] flex flex-col">
+          <div className="bg-white w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[92vh] flex flex-col">
             
-            {/* Modal Header - More Compact */}
-            <div className="bg-red-600 p-4 md:p-8 text-center text-white shrink-0 relative">
+            {/* Cabeçalho Vermelho */}
+            <div className="bg-red-600 p-5 md:p-8 text-center text-white shrink-0 relative">
               <button 
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-2 right-2 text-white/80 hover:text-white transition-colors z-50 p-2"
-                aria-label="Close"
               >
                 <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
               
-              <div className="inline-block bg-orange-500/30 px-3 py-0.5 rounded-full text-[8px] md:text-xs font-black uppercase mb-2 border border-white/20 tracking-wider">
+              <div className="inline-block bg-orange-500/40 px-3 py-1 rounded-full text-[9px] md:text-xs font-black uppercase mb-3 border border-white/20 tracking-wider">
                 ✨ OFERTA ESPECIAL DE UPGRADE
               </div>
               
-              <h2 className="text-lg md:text-3xl font-black leading-tight mb-1 uppercase italic tracking-tighter">
+              <h2 className="text-xl md:text-3xl font-black leading-tight mb-2 uppercase italic tracking-tighter">
                 ESPERA! VOCÊ GANHOU <br /> UM SUPER DESCONTO 🎁
               </h2>
-              <p className="text-[10px] md:text-sm font-medium opacity-90 max-w-[250px] md:max-w-none mx-auto">
+              <p className="text-[11px] md:text-sm font-medium opacity-90 mx-auto">
                 Não comece pela metade. Leve o acesso VIP completo hoje.
               </p>
             </div>
 
-            {/* Scrollable Modal Content - Better constrained */}
-            <div className="p-4 md:p-10 overflow-y-auto flex-grow scrollbar-thin scrollbar-thumb-gray-200">
+            {/* Conteúdo com Preço e Benefícios */}
+            <div className="p-5 md:p-10 overflow-y-auto flex-grow scrollbar-thin">
               <div className="flex flex-col items-center">
                 
-                {/* Price Display - Tighter Spacing */}
-                <div className="relative mb-6 text-center">
-                  <p className="text-gray-400 line-through text-xs md:text-lg font-black mb-0">De R$ 27,00</p>
-                  <div className="flex items-start justify-center" style={{ color: '#166534' }}>
-                    <span className="text-lg md:text-3xl font-black mt-1 md:mt-4 mr-1">R$</span>
-                    <span className="text-5xl md:text-8xl font-black leading-none tracking-tighter">19,90</span>
+                {/* Preço com Sticker de Economia */}
+                <div className="relative mb-8 text-center">
+                  <p className="text-gray-400 line-through text-xs md:text-lg font-black mb-1">De R$ 27,90</p>
+                  <div className="flex items-start justify-center text-green-600">
+                    <span className="text-xl md:text-3xl font-black mt-2 md:mt-4 mr-1">R$</span>
+                    <span className="text-6xl md:text-8xl font-black leading-none tracking-tighter">17,90</span>
                   </div>
-                  {/* Save Badge */}
-                  <div className="absolute top-0 -right-6 md:-right-16 bg-green-100 text-green-700 px-2 py-0.5 rounded-md text-[7px] md:text-[10px] font-black uppercase rotate-6 border border-green-200 shadow-sm whitespace-nowrap">
-                    ECONOMIZE R$ 7,10
+                  {/* Sticker Verde do Exemplo */}
+                  <div className="absolute top-2 -right-10 md:-right-20 bg-[#dcfce7] text-[#166534] px-3 py-1 rounded-lg text-[8px] md:text-[11px] font-black uppercase rotate-6 border border-[#bbf7d0] shadow-sm whitespace-nowrap">
+                    ECONOMIZE R$ 10,00
                   </div>
                 </div>
 
-                {/* Benefits List - More Compact padding */}
-                <div className="w-full bg-gray-50 rounded-2xl p-4 md:p-8 mb-6 border border-gray-100">
-                  <p className="text-[9px] md:text-xs font-black text-gray-400 uppercase mb-3 text-center tracking-[0.1em]">O QUE VOCÊ GANHA NO PLANO COMPLETO:</p>
-                  <ul className="space-y-2 md:space-y-3.5">
+                {/* Lista de Benefícios Estilo Checkbox Quadrado */}
+                <div className="w-full bg-[#f8fafc] rounded-[2rem] p-5 md:p-8 mb-8 border border-slate-100">
+                  <p className="text-[10px] md:text-xs font-black text-slate-400 uppercase mb-5 text-center tracking-[0.2em]">O QUE VOCÊ GANHA NO PLANO VIP:</p>
+                  <ul className="space-y-4">
                     {[
-                      "<b>+30 Receitas</b> em Vídeo",
-                      "<b>Curso Completo</b> + Apostila",
-                      "Bônus: <b>Lista de Fornecedores</b>",
-                      "Bônus: <b>Como Viver de Incensos</b>",
-                      "Bônus: <b>Porta Incensos</b>",
-                      "Acesso <b>Vitalício + Atualizações</b>"
+                      "Mais de 30 Receitas em Vídeo",
+                      "Acesso às Receitas em Airfryer",
+                      "Lista de 50+ Fornecedores",
+                      "Técnicas com e sem resinas",
+                      "Entrega imediata pelo E-mail",
+                      "+3 BÔNUS EXCLUSIVOS"
                     ].map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-2 text-[11px] md:text-base font-bold text-gray-700 leading-tight">
-                        <span className="text-green-500 font-black shrink-0 text-sm md:text-lg">✅</span>
-                        <span dangerouslySetInnerHTML={{ __html: benefit }} />
+                      <li key={i} className="flex items-center gap-3 text-xs md:text-base font-bold text-slate-700">
+                        <div className="w-5 h-5 md:w-6 md:h-6 bg-[#22c55e] rounded flex items-center justify-center shrink-0 shadow-sm">
+                          <svg className="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                        {benefit}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* CTA Buttons - Tighter layout */}
-                <div className="w-full space-y-3 md:space-y-5">
+                {/* Botões de Ação */}
+                <div className="w-full space-y-4">
                   <a 
                     href={CHECKOUT_VIP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full bg-green-600 hover:bg-green-700 text-white py-4 md:py-7 px-4 rounded-full text-sm md:text-xl font-black uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight animate-pulse-subtle"
+                    className="block w-full bg-[#16a34a] hover:bg-[#15803d] text-white py-5 md:py-7 px-4 rounded-full text-base md:text-2xl font-black uppercase shadow-xl transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight animate-pulse-subtle"
                   >
-                    QUERO O PLANO COMPLETO <br className="hidden md:block" /> COM DESCONTO
+                    QUERO O PLANO COMPLETO <br className="md:hidden" /> COM DESCONTO
                   </a>
                   
                   <a 
                     href={CHECKOUT_BASIC_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center text-gray-400 hover:text-gray-600 text-[9px] md:text-xs font-black uppercase underline decoration-1 underline-offset-2 transition-colors p-1"
+                    className="block w-full text-center text-slate-400 hover:text-slate-600 text-[10px] md:text-xs font-black uppercase underline decoration-2 underline-offset-4 transition-colors p-2"
                   >
-                    Não, obrigado. Quero o plano básico de R$ 10,00
+                    Não, obrigado. Quero continuar com o plano simples de R$ 10,00
                   </a>
                 </div>
 
-                <div className="mt-6 flex flex-col items-center">
-                  <p className="text-[8px] md:text-[11px] font-black uppercase text-green-600 tracking-widest">
-                    🛡️ COMPRA 100% SEGURA
-                  </p>
-                </div>
+                <p className="mt-8 text-[9px] md:text-[11px] font-black uppercase text-green-600 tracking-widest">
+                  🛡️ COMPRA 100% SEGURA E GARANTIDA
+                </p>
               </div>
             </div>
           </div>
@@ -197,6 +193,8 @@ const App: React.FC = () => {
         </button>
       </section>
 
+      {/* ... Rest of sections remain same ... */}
+      
       {/* SECTION 2: PARA QUEM É ESSE GUIA? */}
       <section className="relative my-6 px-4">
         <div className="bg-white rounded-[3rem] shadow-2xl mx-auto max-w-4xl p-8 md:p-14 border border-gray-100">
@@ -453,7 +451,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 10: OFERTAS (REORDERED & COMPACT BUT VISIBLE) */}
+      {/* SECTION 10: OFERTAS */}
       <section ref={offerRef} className="py-12 md:py-20 px-4 md:px-8 bg-white scroll-mt-10 overflow-visible">
         <div className="max-w-6xl mx-auto text-center overflow-visible">
           <h2 className="text-2xl md:text-4xl font-black mb-8 md:mb-16 text-gray-900 uppercase tracking-tight leading-tight px-2">
@@ -462,7 +460,7 @@ const App: React.FC = () => {
           
           <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch gap-10 md:gap-14 max-w-6xl mx-auto overflow-visible p-1">
             
-            {/* 1. ACESSO BÁSICO (FIRST) - Opens Pop-up */}
+            {/* 1. ACESSO BÁSICO */}
             <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-2xl border border-gray-100 flex flex-col h-full transition-all duration-300 self-center w-full max-w-lg mx-auto">
               <div className="flex flex-col items-center mb-4 md:mb-6">
                 <span className="text-xs md:text-sm font-black uppercase text-gray-600 mb-2 italic tracking-[0.2em]">Acesso Básico</span>
@@ -505,10 +503,9 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* 2. ACESSO COMPLETO (SECOND / BELOW ON MOBILE) */}
+            {/* 2. ACESSO COMPLETO */}
             <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 self-center w-full max-w-xl mx-auto lg:transform lg:scale-105 mt-4 md:mt-0">
               
-              {/* Floating Badge */}
               <div 
                 className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-12 py-3 md:py-4 rounded-full shadow-2xl z-30 text-white font-black uppercase text-[10px] md:text-sm tracking-[0.2em] whitespace-nowrap border-[4px] md:border-[5px] border-white flex items-center justify-center min-w-[180px] md:min-w-[220px]"
                 style={{ background: COLORS.premiumGradient }}
@@ -539,7 +536,7 @@ const App: React.FC = () => {
               <div className="space-y-3 md:space-y-5 text-left mb-6 md:mb-10 flex-grow w-full border-t border-b border-gray-100 py-6 md:py-10 px-4">
                 {[
                   "Guia A Arte dos Incensos Artesanais",
-                  "<b>+30 Receitas</b> de Incensos Artesanais em Vídeo",
+                  "<b>+30 Receitas</b> em Vídeo",
                   "<span class='bg-[#ec2f4b] text-white px-3 py-1.5 rounded-xl shadow-lg inline-block text-[11px] md:text-base font-extrabold'>Curso em VideoAulas + Apostila</span>",
                   "Bônus 01: Guia Fornecedores de Materiais",
                   "Bônus 02: Como Viver da Venda de Incensos",
@@ -583,7 +580,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 12: DÚVIDAS */}
+      {/* SECTION 11: DÚVIDAS */}
       <section className="py-12 px-5 max-w-4xl mx-auto">
         <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase tracking-tight" style={{ color: COLORS.title }}>DÚVIDAS FREQUENTES</h2>
         <div className="space-y-6">
@@ -599,32 +596,43 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* FINAL SECTION: GARANTIA + CTA */}
-      <section className="py-12 px-5 text-center bg-[#f3efe5] border-t border-gray-200">
-        <h2 className="text-2xl md:text-4xl font-black mb-10 uppercase italic tracking-tighter" style={{ color: COLORS.highlight }}>Aproveite Esta OPORTUNIDADE!</h2>
-        
+      {/* FINAL SECTION: GARANTIA + CTA (IDÊNTICO AO PRINT) */}
+      <section className="py-20 px-5 text-center bg-[#f3efe5] border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
+          
+          <h2 className="text-xl md:text-3xl font-black mb-12 uppercase tracking-tight text-gray-900 leading-tight">
+            APROVEITE ESTA <span className="text-[#a52a2a]">OPORTUNIDADE!</span>
+          </h2>
+
           <img 
             src={IMAGES.garantia} 
-            alt="Garantia de Satisfação" 
-            className="w-full max-sm:max-w-xs max-w-sm h-auto mb-10 drop-shadow-3xl"
+            alt="7 Dias de Garantia 100%" 
+            className="w-full max-sm:max-w-[250px] max-w-[300px] h-auto mb-14 drop-shadow-2xl"
             loading="lazy"
           />
           
-          <h2 className="text-2xl md:text-4xl font-black mb-6 uppercase leading-tight px-4" style={{ color: COLORS.title }}>
-            Clique no botão abaixo e garanta <br className="hidden md:block" /> seu acesso com o <span style={{ color: COLORS.highlight }}>MELHOR PREÇO</span>
-          </h2>
+          <div className="space-y-2 mb-10 text-slate-700 max-w-2xl px-4">
+             <p className="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">
+               CLIQUE NO BOTÃO ABAIXO E GARANTA <br /> AGORA O SEU ACESSO COM
+             </p>
+             <h3 className="text-5xl md:text-[90px] font-black text-[#a52a2a] uppercase leading-none mt-6 drop-shadow-sm">
+               90% DE <br /> DESCONTO
+             </h3>
+          </div>
           
-          <p className="text-base md:text-xl mb-10 text-gray-700 max-w-3xl leading-relaxed font-bold">
-            ✨ Permita-se viver a experiência de criar seus próprios incensos artesanais e transformar sua energia, sua casa e sua vida com esse conhecimento unique!
+          <p className="text-xs md:text-base mb-12 text-gray-500 max-w-2xl leading-relaxed font-bold italic opacity-70 px-4">
+            ✨ Permita-se viver a experiência de criar seus próprios incensos artesanais e transformar sua energia, sua casa e sua vida com esse conhecimento único!
           </p>
 
           <button 
             onClick={scrollToOffer}
-            style={{ backgroundColor: COLORS.button }}
-            className="block w-full md:max-w-2xl text-white py-7 px-4 rounded-2xl text-xl md:text-3xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center animate-pulse-subtle"
+            style={{ backgroundColor: COLORS.guaranteeButton }}
+            className="flex items-center justify-center gap-3 w-full md:max-w-2xl text-white py-6 md:py-8 px-4 rounded-xl text-lg md:text-[28px] font-black uppercase shadow-[0_12px_30px_rgba(61,122,54,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center"
           >
-            QUERO LIBERAR MEU ACESSO AGORA
+            <svg className="w-6 h-6 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            QUERO COMPRAR AGORA
           </button>
         </div>
       </section>
@@ -637,32 +645,13 @@ const App: React.FC = () => {
 
       {/* ADDITIONAL STYLES FOR ANIMATIONS */}
       <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes scale-up {
-          from { transform: scale(0.95); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-        .animate-scale-up {
-          animation: scale-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        /* Thin scrollbar for the modal content on mobile */
-        .scrollbar-thin::-webkit-scrollbar {
-          width: 4px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background: #e5e7eb;
-          border-radius: 10px;
-        }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scale-up { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .animate-fade-in { animation: fade-in 0.3s ease-out; }
+        .animate-scale-up { animation: scale-up 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+        .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
       `}</style>
     </div>
   );
