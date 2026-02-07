@@ -70,13 +70,13 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen font-poppins text-gray-900 pb-10 overflow-x-hidden bg-[#f3efe5]">
       
-      {/* UPGRADE MODAL - OPTIMIZED FOR ALL SCREEN SIZES */}
+      {/* UPGRADE MODAL - OPTIMIZED FOR VISIBILITY AND FIT */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 md:p-4 bg-black/90 backdrop-blur-sm animate-fade-in overflow-hidden">
-          <div className="bg-white w-full max-w-[440px] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[96vh] flex flex-col">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 bg-black/85 backdrop-blur-sm animate-fade-in overflow-hidden">
+          <div className="bg-white w-full max-w-[420px] rounded-[2rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[98vh] flex flex-col">
             
-            {/* Red Header - Compact for Mobile */}
-            <div className="bg-[#cc2121] p-4 md:p-6 text-center text-white shrink-0 relative">
+            {/* Red Header - Tightened Padding */}
+            <div className="bg-[#cc2121] py-3 md:py-5 px-4 text-center text-white shrink-0 relative">
               <button 
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-2 right-2 text-white/80 hover:text-white transition-colors z-50 p-2"
@@ -84,39 +84,39 @@ const App: React.FC = () => {
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
               
-              <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-[8px] md:text-[10px] font-black uppercase mb-2 border border-white/20 tracking-wider">
+              <div className="inline-block bg-white/20 px-2 py-0.5 rounded-full text-[9px] font-black uppercase mb-1.5 border border-white/20 tracking-wider">
                 ✨ OFERTA ESPECIAL DE UPGRADE
               </div>
               
-              <h2 className="text-lg md:text-2xl font-black leading-tight mb-1 uppercase italic tracking-tighter">
-                ESPERA! VOCÊ GANHOU <br /> UN SUPER DESCONTO 🎁
+              <h2 className="text-xl md:text-2xl font-black leading-tight mb-1 uppercase italic tracking-tighter">
+                ESPERA! VOCÊ GANHOU <br /> UM SUPER DESCONTO 🎁
               </h2>
-              <p className="text-[10px] md:text-xs font-medium opacity-90 mx-auto">
+              <p className="text-[11px] font-medium opacity-90 mx-auto leading-tight">
                 Não comece pela metade. Leve o acesso VIP completo hoje.
               </p>
             </div>
 
-            {/* Modal Body - Scrollable if content is too long */}
-            <div className="p-4 md:p-8 overflow-y-auto flex-grow no-scrollbar">
+            {/* Modal Body - Balanced Spacing */}
+            <div className="p-4 md:p-6 overflow-y-auto no-scrollbar flex-grow">
               <div className="flex flex-col items-center">
                 
-                {/* Price Section */}
-                <div className="relative mb-6 text-center">
-                  <p className="text-gray-400 line-through text-[10px] md:text-sm font-black mb-0">De R$ 27,00</p>
+                {/* Price Section - Tighter margins */}
+                <div className="relative mb-3 md:mb-5 text-center">
+                  <p className="text-gray-400 line-through text-xs font-black mb-0">De R$ 27,00</p>
                   <div className="flex items-start justify-center text-[#22c55e]">
-                    <span className="text-base md:text-2xl font-black mt-1 md:mt-3 mr-1">R$</span>
-                    <span className="text-5xl md:text-7xl font-black leading-none tracking-tighter">19,90</span>
+                    <span className="text-xl md:text-2xl font-black mt-1 md:mt-3 mr-1">R$</span>
+                    <span className="text-6xl md:text-7xl font-black leading-none tracking-tighter">19,90</span>
                   </div>
                   {/* Save Label */}
-                  <div className="absolute -top-1 -right-6 md:-right-12 bg-[#dcfce7] text-[#166534] px-2 py-0.5 rounded-md text-[7px] md:text-[10px] font-black uppercase rotate-6 border border-[#bbf7d0] shadow-sm whitespace-nowrap">
+                  <div className="absolute -top-1 -right-8 md:-right-12 bg-[#dcfce7] text-[#166534] px-2 py-0.5 rounded-md text-[9px] font-black uppercase rotate-6 border border-[#bbf7d0] shadow-sm whitespace-nowrap">
                     ECONOMIZE R$ 7,10
                   </div>
                 </div>
 
-                {/* Benefits Box */}
-                <div className="w-full bg-[#f8fafc] rounded-2xl p-4 md:p-6 mb-6 border border-slate-100">
-                  <p className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase mb-3 text-center tracking-[0.2em]">O QUE VOCÊ GANHA NO PLANO VIP:</p>
-                  <ul className="space-y-2 md:space-y-3">
+                {/* Benefits Box - Larger Text, Smaller Padding */}
+                <div className="w-full bg-[#f8fafc] rounded-2xl p-3 md:p-5 mb-4 md:mb-6 border border-slate-100">
+                  <p className="text-[9px] font-black text-slate-400 uppercase mb-2.5 text-center tracking-[0.15em]">O QUE VOCÊ GANHA NO PLANO VIP:</p>
+                  <ul className="space-y-2">
                     {[
                       "Mais de 30 Receitas em Vídeo",
                       "Apostila Completa + VideoAulas",
@@ -125,9 +125,9 @@ const App: React.FC = () => {
                       "Bônus 03: Como Fazer Porta Incensos",
                       "Acesso Vitalício + Atualizações"
                     ].map((benefit, i) => (
-                      <li key={i} className="flex items-center gap-2 text-[10px] md:text-[13px] font-bold text-slate-700">
+                      <li key={i} className="flex items-center gap-2.5 text-[13px] md:text-sm font-bold text-slate-700 leading-tight">
                         <div className="w-4 h-4 md:w-5 md:h-5 bg-[#22c55e] rounded flex items-center justify-center shrink-0">
-                          <svg className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path d="M5 13l4 4L19 7" /></svg>
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path d="M5 13l4 4L19 7" /></svg>
                         </div>
                         {benefit}
                       </li>
@@ -135,18 +135,18 @@ const App: React.FC = () => {
                   </ul>
                 </div>
 
-                {/* CTA Buttons */}
+                {/* CTA Buttons - High Visibility */}
                 <div className="w-full space-y-3">
                   <a 
                     href={CHECKOUT_VIP_URL}
-                    className="block w-full bg-[#22c55e] hover:bg-[#16a34a] text-white py-4 md:py-5 px-4 rounded-full text-xs md:text-base font-black uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight"
+                    className="block w-full bg-[#22c55e] hover:bg-[#16a34a] text-white py-4 md:py-5 px-4 rounded-3xl text-sm md:text-lg font-black uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight"
                   >
                     QUERO O PLANO COMPLETO <br /> COM DESCONTO
                   </a>
                   
                   <a 
                     href={CHECKOUT_BASIC_URL}
-                    className="block w-full text-center text-slate-400 hover:text-slate-600 text-[8px] md:text-[10px] font-black uppercase underline decoration-2 underline-offset-4 transition-colors p-1"
+                    className="block w-full text-center text-slate-400 hover:text-slate-600 text-[9px] md:text-[10px] font-black uppercase underline decoration-2 underline-offset-4 transition-colors p-1"
                   >
                     NÃO, OBRIGADO. QUERO CONTINUAR COM O PLANO SIMPLES DE R$ 10,00
                   </a>
