@@ -69,77 +69,77 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen font-poppins text-gray-900 pb-10 overflow-x-hidden bg-[#f3efe5]">
       
-      {/* UPGRADE MODAL - OPTIMIZED FOR MOBILE */}
+      {/* UPGRADE MODAL - RE-OPTIMIZED FOR SMALL MOBILE SCREENS */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in overflow-y-auto">
-          <div className="bg-white w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[92vh] flex flex-col">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-4 bg-black/90 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white w-full max-w-lg rounded-[2rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[90vh] flex flex-col">
             
-            {/* Modal Header */}
-            <div className="bg-red-600 p-6 md:p-8 text-center text-white shrink-0 relative">
+            {/* Modal Header - More Compact */}
+            <div className="bg-red-600 p-4 md:p-8 text-center text-white shrink-0 relative">
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors z-50 p-1"
+                className="absolute top-2 right-2 text-white/80 hover:text-white transition-colors z-50 p-2"
                 aria-label="Close"
               >
                 <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
               
-              <div className="inline-block bg-orange-500/30 px-3 py-1 rounded-full text-[9px] md:text-xs font-black uppercase mb-3 border border-white/20 tracking-wider">
+              <div className="inline-block bg-orange-500/30 px-3 py-0.5 rounded-full text-[8px] md:text-xs font-black uppercase mb-2 border border-white/20 tracking-wider">
                 ✨ OFERTA ESPECIAL DE UPGRADE
               </div>
               
-              <h2 className="text-xl md:text-3xl font-black leading-tight mb-2 uppercase italic tracking-tighter">
+              <h2 className="text-lg md:text-3xl font-black leading-tight mb-1 uppercase italic tracking-tighter">
                 ESPERA! VOCÊ GANHOU <br /> UM SUPER DESCONTO 🎁
               </h2>
-              <p className="text-[11px] md:text-sm font-medium opacity-90 max-w-[280px] md:max-w-none mx-auto">
-                Não comece pela metade. Leve o acesso VIP completo hoje com desconto exclusivo.
+              <p className="text-[10px] md:text-sm font-medium opacity-90 max-w-[250px] md:max-w-none mx-auto">
+                Não comece pela metade. Leve o acesso VIP completo hoje.
               </p>
             </div>
 
-            {/* Scrollable Modal Content */}
-            <div className="p-6 md:p-10 overflow-y-auto flex-grow no-scrollbar">
+            {/* Scrollable Modal Content - Better constrained */}
+            <div className="p-4 md:p-10 overflow-y-auto flex-grow scrollbar-thin scrollbar-thumb-gray-200">
               <div className="flex flex-col items-center">
                 
-                {/* Price Display */}
-                <div className="relative mb-8 text-center">
-                  <p className="text-gray-400 line-through text-sm md:text-lg font-black mb-1">De R$ 27,00</p>
+                {/* Price Display - Tighter Spacing */}
+                <div className="relative mb-6 text-center">
+                  <p className="text-gray-400 line-through text-xs md:text-lg font-black mb-0">De R$ 27,00</p>
                   <div className="flex items-start justify-center" style={{ color: '#166534' }}>
-                    <span className="text-xl md:text-3xl font-black mt-2 md:mt-4 mr-1">R$</span>
-                    <span className="text-6xl md:text-8xl font-black leading-none tracking-tighter">19,90</span>
+                    <span className="text-lg md:text-3xl font-black mt-1 md:mt-4 mr-1">R$</span>
+                    <span className="text-5xl md:text-8xl font-black leading-none tracking-tighter">19,90</span>
                   </div>
                   {/* Save Badge */}
-                  <div className="absolute top-2 -right-8 md:-right-16 bg-green-100 text-green-700 px-2 py-1 rounded-lg text-[8px] md:text-[10px] font-black uppercase rotate-6 border border-green-200 shadow-sm whitespace-nowrap">
+                  <div className="absolute top-0 -right-6 md:-right-16 bg-green-100 text-green-700 px-2 py-0.5 rounded-md text-[7px] md:text-[10px] font-black uppercase rotate-6 border border-green-200 shadow-sm whitespace-nowrap">
                     ECONOMIZE R$ 7,10
                   </div>
                 </div>
 
-                {/* Benefits List */}
-                <div className="w-full bg-gray-50 rounded-[2rem] p-5 md:p-8 mb-8 border border-gray-100">
-                  <p className="text-[10px] md:text-xs font-black text-gray-400 uppercase mb-5 text-center tracking-[0.2em]">O QUE VOCÊ GANHA NO PLANO COMPLETO:</p>
-                  <ul className="space-y-3.5">
+                {/* Benefits List - More Compact padding */}
+                <div className="w-full bg-gray-50 rounded-2xl p-4 md:p-8 mb-6 border border-gray-100">
+                  <p className="text-[9px] md:text-xs font-black text-gray-400 uppercase mb-3 text-center tracking-[0.1em]">O QUE VOCÊ GANHA NO PLANO COMPLETO:</p>
+                  <ul className="space-y-2 md:space-y-3.5">
                     {[
                       "<b>+30 Receitas</b> em Vídeo",
-                      "<b>Curso Completo</b> + Apostila Digital",
-                      "Bônus 01: <b>Lista de Fornecedores</b>",
-                      "Bônus 02: <b>Venda de Incensos</b>",
-                      "Bônus 03: <b>Faça Porta Incensos</b>",
+                      "<b>Curso Completo</b> + Apostila",
+                      "Bônus: <b>Lista de Fornecedores</b>",
+                      "Bônus: <b>Como Viver de Incensos</b>",
+                      "Bônus: <b>Porta Incensos</b>",
                       "Acesso <b>Vitalício + Atualizações</b>"
                     ].map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-3 text-xs md:text-base font-bold text-gray-700 leading-tight">
-                        <span className="text-green-500 font-black shrink-0 text-base md:text-lg">✅</span>
+                      <li key={i} className="flex items-start gap-2 text-[11px] md:text-base font-bold text-gray-700 leading-tight">
+                        <span className="text-green-500 font-black shrink-0 text-sm md:text-lg">✅</span>
                         <span dangerouslySetInnerHTML={{ __html: benefit }} />
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* CTA Buttons */}
-                <div className="w-full space-y-5">
+                {/* CTA Buttons - Tighter layout */}
+                <div className="w-full space-y-3 md:space-y-5">
                   <a 
                     href={CHECKOUT_VIP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full bg-green-600 hover:bg-green-700 text-white py-5 md:py-7 px-4 rounded-full text-base md:text-xl font-black uppercase shadow-[0_15px_30px_rgba(22,101,52,0.3)] transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight animate-pulse-subtle"
+                    className="block w-full bg-green-600 hover:bg-green-700 text-white py-4 md:py-7 px-4 rounded-full text-sm md:text-xl font-black uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight animate-pulse-subtle"
                   >
                     QUERO O PLANO COMPLETO <br className="hidden md:block" /> COM DESCONTO
                   </a>
@@ -148,15 +148,15 @@ const App: React.FC = () => {
                     href={CHECKOUT_BASIC_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-center text-gray-400 hover:text-gray-600 text-[10px] md:text-xs font-black uppercase underline decoration-2 underline-offset-4 transition-colors p-2"
+                    className="block w-full text-center text-gray-400 hover:text-gray-600 text-[9px] md:text-xs font-black uppercase underline decoration-1 underline-offset-2 transition-colors p-1"
                   >
                     Não, obrigado. Quero o plano básico de R$ 10,00
                   </a>
                 </div>
 
-                <div className="mt-8 flex flex-col items-center gap-2">
-                  <p className="text-[9px] md:text-[11px] font-black uppercase text-green-600 tracking-widest flex items-center gap-2">
-                    🛡️ COMPRA 100% SEGURA E GARANTIDA
+                <div className="mt-6 flex flex-col items-center">
+                  <p className="text-[8px] md:text-[11px] font-black uppercase text-green-600 tracking-widest">
+                    🛡️ COMPRA 100% SEGURA
                   </p>
                 </div>
               </div>
@@ -650,6 +650,18 @@ const App: React.FC = () => {
         }
         .animate-scale-up {
           animation: scale-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Thin scrollbar for the modal content on mobile */
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 4px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+          background: #e5e7eb;
+          border-radius: 10px;
         }
       `}</style>
     </div>
