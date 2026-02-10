@@ -48,7 +48,7 @@ const App: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const offerAnchorRef = useRef<HTMLDivElement>(null);
 
-  // Function to append current URL parameters to checkout links
+  // Function to append current URL parameters (UTMs) to checkout links
   const getCheckoutUrl = (baseUrl: string) => {
     try {
       const url = new URL(baseUrl);
@@ -116,7 +116,7 @@ const App: React.FC = () => {
                   <p className="text-gray-400 line-through text-[10px] font-black mb-0">De R$ 19,90</p>
                   <div className="flex items-start justify-center text-[#22c55e]">
                     <span className="text-lg md:text-2xl font-black mt-1 md:mt-3 mr-1">R$</span>
-                    <span className="text-5xl md:text-7xl font-black leading-none tracking-tighter">15,90</span>
+                    <span className="text-6xl md:text-7xl font-black leading-none tracking-tighter">15,90</span>
                   </div>
                 </div>
 
@@ -190,7 +190,7 @@ const App: React.FC = () => {
         <button 
           onClick={scrollToOffer}
           style={{ backgroundColor: COLORS.button }}
-          className="w-full md:max-w-md text-white py-4 md:py-6 px-4 rounded-2xl text-sm md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
+          className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
         >
           EU QUERO APRENDER AGORA!
         </button>
@@ -243,7 +243,7 @@ const App: React.FC = () => {
         <button 
           onClick={scrollToOffer}
           style={{ backgroundColor: COLORS.button }}
-          className="w-full md:max-w-md text-white py-4 md:py-6 px-4 rounded-2xl text-sm md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
+          className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
         >
           QUERO APRENDER AGORA
         </button>
@@ -295,7 +295,7 @@ const App: React.FC = () => {
           <button 
             onClick={scrollToOffer}
             style={{ backgroundColor: COLORS.button }}
-            className="w-full md:max-w-md text-white py-4 md:py-6 px-4 rounded-2xl text-sm md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
+            className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
           >
             QUERO LIBERAR AGORA
           </button>
@@ -335,7 +335,7 @@ const App: React.FC = () => {
             <button 
               onClick={scrollToOffer}
               style={{ backgroundColor: COLORS.button }}
-              className="w-full md:max-w-md text-white py-4 md:py-6 px-4 rounded-2xl text-sm md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
+              className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
             >
               EU TAMBÉM QUERO APRENDER
             </button>
@@ -365,7 +365,7 @@ const App: React.FC = () => {
           <button 
             onClick={scrollToOffer}
             style={{ backgroundColor: COLORS.button }}
-            className="w-full md:max-w-md text-white py-4 md:py-6 px-4 rounded-2xl text-sm md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
+            className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
           >
             QUERO COMEÇAR AGORA
           </button>
@@ -432,7 +432,7 @@ const App: React.FC = () => {
               <div className="px-2"><button onClick={handleBasicClick} style={{ backgroundColor: COLORS.button }} className="block w-full text-white py-4 md:py-6 px-4 rounded-[1.5rem] text-[13px] md:text-xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center whitespace-nowrap">QUERO O ACESSO BÁSICO</button></div>
             </div>
 
-            {/* 2. ACESSO COMPLETO - SAME TAB TARGET IMPLEMENTED */}
+            {/* 2. ACESSO COMPLETO */}
             <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 self-center w-full max-w-xl mx-auto lg:transform lg:scale-105 mt-4 md:mt-0">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 py-3 rounded-full shadow-2xl z-30 text-white font-black uppercase text-[10px] md:text-sm tracking-[0.2em] whitespace-nowrap border-[4px] border-white" style={{ background: COLORS.premiumGradient }}>🚀 MELHOR ESCOLHA</div>
               <div className="flex flex-col items-center mb-6 pt-6"><h3 className="text-2xl md:text-4xl font-black uppercase mb-6 tracking-tighter italic text-center leading-none" style={{ color: '#ec2f4b' }}>ACESSO COMPLETO</h3><img src={IMAGES.mockupPreco} alt="Oferta" className="relative w-full max-w-[380px] h-auto drop-shadow-2xl mb-8" /></div>
@@ -455,12 +455,58 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* FINAL SECTION */}
+      {/* SECTION 11: DÚVIDAS - RESTAURADO */}
+      <section className="py-12 px-5 max-w-4xl mx-auto">
+        <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase tracking-tight" style={{ color: COLORS.title }}>DÚVIDAS FREQUENTES</h2>
+        <div className="space-y-6">
+          {[
+            { q: "Como irei receber o meu acesso ao guia?", a: "O seu acesso ao guia ou curso será enviado imediatamente para o seu e-mail após a aprovação do seu pagamento, podendo começar imediatamente a fazer os seus incensos artesanais." },
+            { q: "É apenas um único pagamento?", a: "Sim, você paga apenas uma vez e tem acesso vitalício a todo o conteúdo e as futuras atualizações." }
+          ].map((item, idx) => (
+            <div key={idx} className="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl border border-gray-100 transition-all hover:shadow-2xl">
+              <h3 className="text-lg md:text-xl font-black mb-3 uppercase tracking-tight text-[#4c0505]">{item.q}</h3>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed font-semibold">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FINAL SECTION: GARANTIA + CTA - MANTIDO ORIGINAL */}
       <section className="py-20 px-5 text-center bg-[#f3efe5] border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <img src={IMAGES.garantia} alt="7 Dias" className="w-full max-sm:max-w-[200px] max-w-[300px] h-auto mb-14 drop-shadow-2xl" />
-          <button onClick={scrollToOffer} style={{ backgroundColor: COLORS.guaranteeButton }} className="flex items-center justify-center gap-3 w-full md:max-w-2xl text-white py-4 md:py-8 px-4 rounded-xl text-[13px] md:text-[28px] font-black uppercase shadow-[0_12px_30px_rgba(61,122,54,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap">
-            <svg className="w-5 h-5 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+          
+          <h2 className="text-xl md:text-3xl font-black mb-12 uppercase tracking-tight text-gray-900 leading-tight">
+            APROVEITE ESTA <span className="text-[#a52a2a]">OPORTUNIDADE!</span>
+          </h2>
+
+          <img 
+            src={IMAGES.garantia} 
+            alt="7 Dias de Garantia 100%" 
+            className="w-full max-sm:max-w-[250px] max-w-[300px] h-auto mb-14 drop-shadow-2xl"
+            loading="lazy"
+          />
+          
+          <div className="space-y-2 mb-10 text-slate-700 max-w-2xl px-4">
+             <p className="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">
+               CLIQUE NO BOTÃO ABAIXO E GARANTA <br /> AGORA O SEU ACESSO COM
+             </p>
+             <h3 className="text-5xl md:text-[90px] font-black text-[#a52a2a] uppercase leading-none mt-6 drop-shadow-sm">
+               90% DE <br /> DESCONTO
+             </h3>
+          </div>
+          
+          <p className="text-xs md:text-base mb-12 text-gray-500 max-w-2xl leading-relaxed font-bold italic opacity-70 px-4">
+            ✨ Permita-se viver a experiência de criar seus próprios incensos artesanais e transformar sua energia, sua casa e sua vida com esse conhecimento unique!
+          </p>
+
+          <button 
+            onClick={scrollToOffer}
+            style={{ backgroundColor: COLORS.guaranteeButton }}
+            className="flex items-center justify-center gap-3 w-full md:max-w-2xl text-white py-4 md:py-8 px-4 rounded-xl text-[13px] md:text-[28px] font-black uppercase shadow-[0_12px_30px_rgba(61,122,54,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
+          >
+            <svg className="w-5 h-5 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
             QUERO COMPRAR AGORA
           </button>
         </div>
