@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 // Constants
 const COLORS = {
@@ -14,9 +14,9 @@ const COLORS = {
   guaranteeButton: '#3d7a36'
 };
 
-const CHECKOUT_BASIC_URL = 'https://indec-digital.mycartpanda.com/checkout/207032899:1';
-const CHECKOUT_COMPLETE_URL = 'https://indec-digital.mycartpanda.com/checkout/207032940:1'; 
-const CHECKOUT_VIP_URL = 'https://indec-digital.mycartpanda.com/checkout/207032936:1'; 
+const CHECKOUT_BASIC_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032899:1';
+const CHECKOUT_COMPLETE_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032940:1'; 
+const CHECKOUT_VIP_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032936:1'; 
 
 const IMAGES = {
   capa: 'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/Capa_Inicio_ezxhme.webp',
@@ -46,10 +46,24 @@ const IMAGES = {
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const offerRef = useRef<HTMLDivElement>(null);
+  const offerAnchorRef = useRef<HTMLDivElement>(null);
+
+  // Function to append current URL parameters to checkout links
+  const getCheckoutUrl = (baseUrl: string) => {
+    try {
+      const url = new URL(baseUrl);
+      const currentParams = new URLSearchParams(window.location.search);
+      currentParams.forEach((value, key) => {
+        url.searchParams.set(key, value);
+      });
+      return url.toString();
+    } catch (e) {
+      return baseUrl;
+    }
+  };
 
   const scrollToOffer = () => {
-    offerRef.current?.scrollIntoView({ behavior: 'smooth' });
+    offerAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const scrollTestimonials = (direction: 'left' | 'right') => {
@@ -70,7 +84,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen font-poppins text-gray-900 pb-10 overflow-x-hidden bg-[#f3efe5]">
       
-      {/* UPGRADE MODAL - UPDATED PRICES AND LINKS */}
+      {/* UPGRADE MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 bg-black/85 backdrop-blur-sm animate-fade-in overflow-hidden">
           <div className="bg-white w-full max-w-[420px] rounded-[2rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[98vh] flex flex-col">
@@ -129,14 +143,16 @@ const App: React.FC = () => {
 
                 <div className="w-full space-y-4">
                   <a 
-                    href={CHECKOUT_VIP_URL}
+                    href={getCheckoutUrl(CHECKOUT_VIP_BASE)}
+                    target="_self"
                     className="block w-full bg-[#22c55e] hover:bg-[#16a34a] text-white py-3.5 md:py-5 px-2 rounded-2xl text-xs md:text-lg font-black uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight whitespace-nowrap"
                   >
                     QUERO O PLANO COMPLETO COM DESCONTO
                   </a>
                   
                   <a 
-                    href={CHECKOUT_BASIC_URL}
+                    href={getCheckoutUrl(CHECKOUT_BASIC_BASE)}
+                    target="_self"
                     className="block w-full text-center text-slate-500 hover:text-slate-800 text-[10px] md:text-[12px] font-black uppercase underline decoration-2 underline-offset-4 transition-colors p-2 bg-gray-50 rounded-xl whitespace-nowrap"
                   >
                     NÃO, OBRIGADO. QUERO CONTINUAR POR R$ 10,00
@@ -224,10 +240,6 @@ const App: React.FC = () => {
           ))}
         </div>
 
-        <p className="text-lg md:text-2xl font-black mb-8 text-gray-900 uppercase leading-tight">
-          👉 Aqui você aprende de forma DIRETA, <br className="hidden md:block" /> PRÁTICA, 100% testada e validada!
-        </p>
-
         <button 
           onClick={scrollToOffer}
           style={{ backgroundColor: COLORS.button }}
@@ -279,10 +291,6 @@ const App: React.FC = () => {
           ))}
         </div>
 
-        <p className="mt-10 text-base md:text-xl italic text-center text-gray-500 font-medium">
-          E muito mais… Fórmulas, técnicas, segredos e combinações ancestrais para você dominar a arte dos incensos naturais, seja para uso pessoal or para criar uma renda altamente lucrativa!
-        </p>
-
         <div className="mt-10 flex justify-center">
           <button 
             onClick={scrollToOffer}
@@ -300,7 +308,6 @@ const App: React.FC = () => {
           <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase leading-tight px-4" style={{ color: COLORS.title }}>
             Junte-se a mais de <span style={{ color: COLORS.highlight }}>1.387 pessoas</span> que já descobriram o power dos incensos naturais!
           </h2>
-          
           <div className="relative group px-2 md:px-0">
             <button 
               onClick={() => scrollTestimonials('left')}
@@ -309,23 +316,13 @@ const App: React.FC = () => {
             >
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7" /></svg>
             </button>
-            
-            <div 
-              ref={scrollRef}
-              className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar py-6 px-4 animate-hint"
-            >
+            <div ref={scrollRef} className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar py-6 px-4 animate-hint">
               {IMAGES.depoimentos.map((img, idx) => (
                 <div key={idx} className="min-w-[80%] md:min-w-[31%] snap-center flex-shrink-0 bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 flex items-center justify-center h-[450px] md:h-[550px] transition-transform duration-300 hover:scale-[1.02]">
-                  <img 
-                    src={img} 
-                    alt={`Depoimento ${idx + 1}`} 
-                    className="w-full h-full object-contain p-4"
-                    loading="lazy"
-                  />
+                  <img src={img} alt={`Depoimento ${idx + 1}`} className="w-full h-full object-contain p-4" loading="lazy" />
                 </div>
               ))}
             </div>
-
             <button 
               onClick={() => scrollTestimonials('right')}
               className="absolute right-0 md:-right-8 top-1/2 -translate-y-1/2 z-30 bg-white/90 p-3 md:p-5 rounded-full shadow-2xl hover:bg-gray-50 transition-colors border border-gray-100 flex items-center justify-center"
@@ -334,11 +331,6 @@ const App: React.FC = () => {
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" /></svg>
             </button>
           </div>
-
-          <p className="mt-10 text-center text-[11px] md:text-base text-gray-400 max-w-2xl mx-auto font-semibold leading-relaxed px-4">
-            Este método foi desenvolvido com base em práticas ancestrais e conhecimentos profissionais adaptados para você fazer em casa.
-          </p>
-
           <div className="mt-10 flex justify-center">
             <button 
               onClick={scrollToOffer}
@@ -351,13 +343,12 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 7: AQUI ESTÁ UM POUCO DO QUE VOCÊ TERÁ ACESSO */}
+      {/* SECTION 7: TERÁ ACESSO */}
       <section className="py-12 px-5 max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase leading-tight" style={{ color: COLORS.title }}>
           AQUI ESTÁ UM POUCO DO QUE VOCÊ <br className="hidden md:block" /> <span style={{ color: COLORS.highlight }}>TERÁ ACESSO</span>
           <br /><span className="text-sm md:text-xl font-bold text-gray-400 mt-2 block">(adquirindo apenas HOJE)</span>
         </h2>
-        
         <div className="grid md:grid-cols-3 gap-8">
           {[
             { img: IMAGES.passos[0], title: "Início", text: "Aprenda quais materiais usar, como preparar seus ingredientes e ativar sua intenção sagrada." },
@@ -365,18 +356,11 @@ const App: React.FC = () => {
             { img: IMAGES.passos[2], title: "Ingredientes", text: "Explore os poderes das ervas e resinas para combinar aromas que elevam a vibração." }
           ].map((item, idx) => (
             <div key={idx} className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 flex flex-col h-full hover:shadow-3xl transition-shadow">
-              <div className="p-4">
-                <div className="relative overflow-hidden rounded-[2rem]">
-                  <img src={item.img} alt={item.title} className="w-full h-auto transition-transform hover:scale-110 duration-700" loading="lazy" />
-                </div>
-              </div>
-              <div className="px-8 pb-10 flex-grow flex items-center">
-                <p className="text-base md:text-xl text-center font-bold leading-relaxed text-gray-800">{item.text}</p>
-              </div>
+              <div className="p-4"><div className="relative overflow-hidden rounded-[2rem]"><img src={item.img} alt={item.title} className="w-full h-auto transition-transform hover:scale-110 duration-700" loading="lazy" /></div></div>
+              <div className="px-8 pb-10 flex-grow flex items-center"><p className="text-base md:text-xl text-center font-bold leading-relaxed text-gray-800">{item.text}</p></div>
             </div>
           ))}
         </div>
-
         <div className="mt-12 flex justify-center">
           <button 
             onClick={scrollToOffer}
@@ -388,22 +372,14 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 8: TUDO O QUE VOCÊ VAI APRENDER */}
+      {/* SECTION 8: VAI APRENDER */}
       <section className="py-12 px-5 bg-white">
         <div className="max-w-4xl mx-auto bg-[#f3efe5] rounded-[4rem] p-8 md:p-14 shadow-xl border border-gray-100">
           <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase tracking-tight text-gray-900 leading-tight">
             TUDO O QUE VOCÊ <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>VAI APRENDER</span>
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {[
-              "<b>+20 Receitas</b> Exclusivas",
-              "Modo de <b>Preparo</b> Detalhado",
-              "<b>Lista</b> de Ingredientes Naturais",
-              "<b>Combinações</b> de Aromas e Funções",
-              "<b>Técnicas</b> de Mistura e Modelagem",
-              "Fórmulas Prontas e <b>Segredos</b> de Alquimia",
-              "Acesso <b>Vitalício</b> e <b>Atualizações</b>"
-            ].map((item, idx) => (
+            {["<b>+20 Receitas</b> Exclusivas", "Modo de <b>Preparo</b> Detalhado", "<b>Lista</b> de Ingredientes Naturais", "<b>Combinações</b> de Aromas e Funções", "<b>Técnicas</b> de Mistura e Modelagem", "Fórmulas Prontas e <b>Segredos</b> de Alquimia", "Acesso <b>Vitalício</b> e <b>Atualizações</b>"].map((item, idx) => (
               <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm">
                 <span className="text-green-600 font-black text-2xl">✔️</span>
                 <span className="text-base md:text-xl font-bold text-gray-800 leading-tight" dangerouslySetInnerHTML={{ __html: item }} />
@@ -418,7 +394,6 @@ const App: React.FC = () => {
         <h2 className="text-2xl md:text-4xl font-black mb-12 text-center uppercase leading-tight px-4" style={{ color: COLORS.title }}>
           E PRA TORNAR SUA JORNADA AINDA <br className="hidden md:block" /> MAIS ESPECIAL… VOCÊ VAI RECEBER <br className="hidden md:block" /> <span style={{ color: COLORS.highlight }}>3 PRESENTES EXCLUSIVOS:</span>
         </h2>
-        
         <div className="grid gap-8 md:grid-cols-3">
           {[
             { img: IMAGES.bonus[0], title: "GUIA FORNECEDORES DE MATERIAIS", desc: "Uma lista completa e atualizada com os melhores fornecedores para você encontrar ervas, resinas, pós naturais, óleos, materiais e muito mais com facilidade." },
@@ -426,9 +401,7 @@ const App: React.FC = () => {
             { img: IMAGES.bonus[2], title: "COMO FAZER PORTA INCENSOS", desc: "Além dos seus incensos, aprenda também a criar porta incensos lindos e artesanais, usando materiais simples e acessíveis." }
           ].map((item, idx) => (
             <div key={idx} className="flex flex-col items-center text-center bg-white border-2 border-dashed border-[#b8d4bb] rounded-[3rem] p-8 md:p-10 shadow-sm transition-transform hover:scale-[1.02] duration-300">
-              <div className="relative mb-8 w-full flex justify-center">
-                <img src={item.img} alt={item.title} className="w-56 md:w-64 h-auto drop-shadow-2xl" loading="lazy" />
-              </div>
+              <div className="relative mb-8 w-full flex justify-center"><img src={item.img} alt={item.title} className="w-56 md:w-64 h-auto drop-shadow-2xl" loading="lazy" /></div>
               <h3 className="text-lg md:text-xl font-black mb-4 uppercase leading-tight px-2 text-[#2d5a27] tracking-tight">{item.title}</h3>
               <p className="text-sm md:text-base text-gray-500 font-medium leading-relaxed px-2">{item.desc}</p>
             </div>
@@ -436,187 +409,58 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* INVISIBLE ANCHOR FOR PRECISE SCROLLING */}
+      <div ref={offerAnchorRef} className="scroll-mt-24"></div>
+
       {/* SECTION 10: OFERTAS */}
-      <section ref={offerRef} className="py-12 md:py-20 px-4 md:px-8 bg-white scroll-mt-10 overflow-visible">
+      <section className="py-12 md:py-20 px-4 md:px-8 bg-white overflow-visible">
         <div className="max-w-6xl mx-auto text-center overflow-visible">
           <h2 className="text-2xl md:text-4xl font-black mb-8 md:mb-16 text-gray-900 uppercase tracking-tight leading-tight px-2">
             ESCOLHA A MELHOR <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>OPÇÃO PARA VOCÊ:</span>
           </h2>
-          
           <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch gap-10 md:gap-14 max-w-6xl mx-auto overflow-visible p-1">
-            
             {/* 1. ACESSO BÁSICO */}
             <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-2xl border border-gray-100 flex flex-col h-full transition-all duration-300 self-center w-full max-w-lg mx-auto">
               <div className="flex flex-col items-center mb-4 md:mb-6">
                 <span className="text-xs md:text-sm font-black uppercase text-gray-600 mb-2 italic tracking-[0.2em]">Acesso Básico</span>
                 <h3 className="text-xl md:text-2xl font-black mb-4 md:mb-6 px-2 leading-tight" style={{ color: COLORS.title }}>Guia A Arte dos <br /> Incensos Artesanais</h3>
-                
-                <div className="text-center mb-4 md:mb-6">
-                  <p className="text-[10px] md:text-xs font-bold uppercase text-gray-400 mb-1">Por apenas</p>
-                  <div className="flex items-start justify-center" style={{ color: '#166534' }}>
-                    <span className="text-2xl md:text-3xl font-black mt-2 md:mt-3 mr-1">R$</span>
-                    <span className="text-7xl md:text-8xl font-black leading-none">10</span>
-                  </div>
-                  <p className="text-[10px] md:text-xs font-black uppercase text-gray-400 mt-2 tracking-[0.1em]">Pagamento Único</p>
-                </div>
+                <div className="text-center mb-4 md:mb-6"><div className="flex items-start justify-center" style={{ color: '#166534' }}><span className="text-2xl md:text-3xl font-black mt-2 md:mt-3 mr-1">R$</span><span className="text-7xl md:text-8xl font-black leading-none">10</span></div></div>
               </div>
-
-              <div className="space-y-3 md:space-y-4 text-left mb-6 md:mb-10 flex-grow w-full px-4">
-                {[
-                  "<b>+20 Receitas</b> de Incensos Artesanais",
-                  "Acesso <b>Vitalício</b>",
-                  "<b>7 Dias</b> de Garantia"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <span className="text-[#2d5a27] font-black text-xl">✅</span>
-                    <p className="text-base md:text-lg text-gray-700 font-bold" dangerouslySetInnerHTML={{ __html: item }} />
-                  </div>
-                ))}
-              </div>
-
-              <div className="px-2">
-                <button 
-                  onClick={handleBasicClick}
-                  style={{ backgroundColor: COLORS.button }}
-                  className="block w-full text-white py-4 md:py-6 px-4 rounded-[1.5rem] text-sm md:text-xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center whitespace-nowrap"
-                >
-                  QUERO O ACESSO BÁSICO
-                </button>
-                <p className="mt-4 text-[9px] md:text-xs font-black text-red-600 uppercase italic whitespace-nowrap text-center">
-                  🔥 Atenção: Temos uma oferta imperdível abaixo.
-                </p>
-              </div>
+              <div className="space-y-3 md:space-y-4 text-left mb-6 md:mb-10 flex-grow w-full px-4">{["<b>+20 Receitas</b> de Incensos Artesanais", "Acesso <b>Vitalício</b>", "<b>7 Dias</b> de Garantia"].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3"><span className="text-[#2d5a27] font-black text-xl">✅</span><p className="text-base md:text-lg text-gray-700 font-bold" dangerouslySetInnerHTML={{ __html: item }} /></div>
+              ))}</div>
+              <div className="px-2"><button onClick={handleBasicClick} style={{ backgroundColor: COLORS.button }} className="block w-full text-white py-4 md:py-6 px-4 rounded-[1.5rem] text-[13px] md:text-xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center whitespace-nowrap">QUERO O ACESSO BÁSICO</button></div>
             </div>
 
-            {/* 2. ACESSO COMPLETO */}
+            {/* 2. ACESSO COMPLETO - SAME TAB TARGET IMPLEMENTED */}
             <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 self-center w-full max-w-xl mx-auto lg:transform lg:scale-105 mt-4 md:mt-0">
-              
-              <div 
-                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 md:px-12 py-3 md:py-4 rounded-full shadow-2xl z-30 text-white font-black uppercase text-[10px] md:text-sm tracking-[0.2em] whitespace-nowrap border-[4px] md:border-[5px] border-white flex items-center justify-center min-w-[180px] md:min-w-[220px]"
-                style={{ background: COLORS.premiumGradient }}
-              >
-                🚀 MELHOR ESCOLHA
-              </div>
-
-              <div className="flex flex-col items-center mb-6 md:mb-8 pt-6 md:pt-8">
-                <h3 className="text-2xl md:text-4xl font-black uppercase mb-6 md:mb-10 tracking-tighter italic text-center leading-none" style={{ color: '#ec2f4b' }}>
-                  ACESSO COMPLETO
-                </h3>
-                
-                <div className="relative mb-6 md:mb-10 w-full flex justify-center">
-                  <div className="absolute inset-0 bg-red-100/40 blur-[60px] md:blur-[100px] rounded-full transform scale-125 -z-10"></div>
-                  <img 
-                    src={IMAGES.mockupPreco} 
-                    alt="Mockup Acesso Completo" 
-                    className="relative w-full max-w-[380px] h-auto drop-shadow-[0_40px_40px_rgba(0,0,0,0.35)] md:drop-shadow-[0_60px_60px_rgba(0,0,0,0.4)]"
-                    loading="lazy"
-                  />
-                </div>
-
-                <p className="text-[11px] md:text-lg font-black text-gray-500 uppercase tracking-tight text-center w-full max-w-sm">
-                  Curso Completo + Conteúdos Exclusivos
-                </p>
-              </div>
-
-              <div className="space-y-3 md:space-y-5 text-left mb-6 md:mb-10 flex-grow w-full border-t border-b border-gray-100 py-6 md:py-10 px-4">
-                {[
-                  "Guia A Arte dos Incensos Artesanais",
-                  "<b>+30 Receitas</b> de Incensos Artesanais em Vídeo",
-                  "<span class='bg-[#ec2f4b] text-white px-3 py-1.5 rounded-xl shadow-lg inline-block text-[11px] md:text-base font-extrabold'>Curso em VideoAulas + Apostila</span>",
-                  "Bônus 01: Guia Fornecedores de Materiais",
-                  "Bônus 02: Como Viver da Venda de Incensos",
-                  "Bônus 03: Como Fazer Porta Incensos",
-                  "Acesso <b>Vitalício + Atualizações</b>",
-                  "<b>7 Dias</b> de Garantia"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <span className="text-[#ec2f4b] font-black text-xl md:text-2xl shrink-0">✅</span>
-                    <p className="text-sm md:text-xl text-gray-800 font-extrabold leading-tight" dangerouslySetInnerHTML={{ __html: item }} />
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center mb-8 md:mb-12 relative">
-                <p className="text-base md:text-3xl font-black mb-3 md:mb-5 tracking-tight flex items-center justify-center gap-2 md:gap-3">
-                  <span className="text-red-600 line-through decoration-2 md:decoration-4">R$ 99,90</span> 
-                  <span className="text-red-600">(-80%)</span>
-                </p>
-                <div className="flex items-start justify-center" style={{ color: COLORS.vibrantGreen }}>
-                  <span className="text-4xl md:text-6xl font-black mt-4 md:mt-8 mr-1 tracking-tighter">R$</span>
-                  <span className="text-7xl md:text-[10rem] font-black leading-none tracking-tighter drop-shadow-2xl">19,90</span>
-                </div>
-                <p className="text-[11px] md:text-base font-black uppercase text-gray-400 mt-6 md:mt-10 tracking-[0.3em] md:tracking-[0.4em]">Pagamento Único</p>
-              </div>
-
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 py-3 rounded-full shadow-2xl z-30 text-white font-black uppercase text-[10px] md:text-sm tracking-[0.2em] whitespace-nowrap border-[4px] border-white" style={{ background: COLORS.premiumGradient }}>🚀 MELHOR ESCOLHA</div>
+              <div className="flex flex-col items-center mb-6 pt-6"><h3 className="text-2xl md:text-4xl font-black uppercase mb-6 tracking-tighter italic text-center leading-none" style={{ color: '#ec2f4b' }}>ACESSO COMPLETO</h3><img src={IMAGES.mockupPreco} alt="Oferta" className="relative w-full max-w-[380px] h-auto drop-shadow-2xl mb-8" /></div>
+              <div className="space-y-3 md:space-y-5 text-left mb-6 flex-grow w-full border-t border-b border-gray-100 py-6 px-4">{["Guia A Arte dos Incensos Artesanais", "<b>+30 Receitas</b> em Vídeo", "<span class='bg-[#ec2f4b] text-white px-3 py-1.5 rounded-xl shadow-lg inline-block text-[11px] md:text-base font-extrabold'>Curso em VideoAulas + Apostila</span>", "Bônus 01: Fornecedores", "Bônus 02: Viver de Incensos", "Bônus 03: Porta Incensos", "Acesso <b>Vitalício + Atualizações</b>", "<b>7 Dias</b> de Garantia"].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3"><span className="text-[#ec2f4b] font-black text-xl md:text-2xl shrink-0">✅</span><p className="text-sm md:text-xl text-gray-800 font-extrabold leading-tight" dangerouslySetInnerHTML={{ __html: item }} /></div>
+              ))}</div>
+              <div className="text-center mb-8 relative"><div className="flex items-start justify-center" style={{ color: COLORS.vibrantGreen }}><span className="text-4xl md:text-6xl font-black mt-4 md:mt-8 mr-1 tracking-tighter">R$</span><span className="text-7xl md:text-[10rem] font-black leading-none tracking-tighter drop-shadow-2xl">19,90</span></div></div>
               <div className="px-2 md:px-4 pb-4">
                 <a 
-                  href={CHECKOUT_COMPLETE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ background: COLORS.premiumGradient }}
-                  className="block w-full text-white py-4 md:py-8 px-4 rounded-full text-sm md:text-2xl font-black uppercase shadow-[0_25px_50px_rgba(236,47,75,0.45)] md:shadow-[0_35px_70px_rgba(236,47,75,0.55)] hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
+                  href={getCheckoutUrl(CHECKOUT_COMPLETE_BASE)} 
+                  target="_self"
+                  style={{ background: COLORS.premiumGradient }} 
+                  className="block w-full text-white py-4 md:py-8 px-4 rounded-full text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
                 >
                   QUERO O ACESSO COMPLETO
                 </a>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* SECTION 11: DÚVIDAS */}
-      <section className="py-12 px-5 max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase tracking-tight" style={{ color: COLORS.title }}>DÚVIDAS FREQUENTES</h2>
-        <div className="space-y-6">
-          {[
-            { q: "Como irei receber o meu acesso ao guia?", a: "O seu acesso ao guia ou curso será enviado imediatamente para o seu e-mail após a aprovação do seu pagamento, podendo começar imediatamente a fazer os seus incensos artesanais." },
-            { q: "É apenas um único pagamento?", a: "Sim, você paga apenas uma vez e tem acesso vitalício a todo o conteúdo e as futuras atualizações." }
-          ].map((item, idx) => (
-            <div key={idx} className="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl border border-gray-100 transition-all hover:shadow-2xl">
-              <h3 className="text-lg md:text-xl font-black mb-3 uppercase tracking-tight text-[#4c0505]">{item.q}</h3>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed font-semibold">{item.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* FINAL SECTION: GARANTIA + CTA */}
+      {/* FINAL SECTION */}
       <section className="py-20 px-5 text-center bg-[#f3efe5] border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
-          
-          <h2 className="text-xl md:text-3xl font-black mb-12 uppercase tracking-tight text-gray-900 leading-tight">
-            APROVEITE ESTA <span className="text-[#a52a2a]">OPORTUNIDADE!</span>
-          </h2>
-
-          <img 
-            src={IMAGES.garantia} 
-            alt="7 Dias de Garantia 100%" 
-            className="w-full max-sm:max-w-[250px] max-w-[300px] h-auto mb-14 drop-shadow-2xl"
-            loading="lazy"
-          />
-          
-          <div className="space-y-2 mb-10 text-slate-700 max-w-2xl px-4">
-             <p className="text-sm md:text-lg font-black uppercase tracking-tight leading-tight">
-               CLIQUE NO BOTÃO ABAIXO E GARANTA <br /> AGORA O SEU ACESSO COM
-             </p>
-             <h3 className="text-5xl md:text-[90px] font-black text-[#a52a2a] uppercase leading-none mt-6 drop-shadow-sm">
-               90% DE <br /> DESCONTO
-             </h3>
-          </div>
-          
-          <p className="text-xs md:text-base mb-12 text-gray-500 max-w-2xl leading-relaxed font-bold italic opacity-70 px-4">
-            ✨ Permita-se viver a experiência de criar seus próprios incensos artesanais e transformar sua energia, sua casa e sua vida com esse conhecimento unique!
-          </p>
-
-          <button 
-            onClick={scrollToOffer}
-            style={{ backgroundColor: COLORS.guaranteeButton }}
-            className="flex items-center justify-center gap-3 w-full md:max-w-2xl text-white py-4 md:py-8 px-4 rounded-xl text-sm md:text-[28px] font-black uppercase shadow-[0_12px_30px_rgba(61,122,54,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
-          >
-            <svg className="w-5 h-5 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
+          <img src={IMAGES.garantia} alt="7 Dias" className="w-full max-sm:max-w-[200px] max-w-[300px] h-auto mb-14 drop-shadow-2xl" />
+          <button onClick={scrollToOffer} style={{ backgroundColor: COLORS.guaranteeButton }} className="flex items-center justify-center gap-3 w-full md:max-w-2xl text-white py-4 md:py-8 px-4 rounded-xl text-[13px] md:text-[28px] font-black uppercase shadow-[0_12px_30px_rgba(61,122,54,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap">
+            <svg className="w-5 h-5 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
             QUERO COMPRAR AGORA
           </button>
         </div>
@@ -624,19 +468,14 @@ const App: React.FC = () => {
 
       {/* FOOTER */}
       <footer className="py-10 px-5 text-center text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-gray-400 border-t border-gray-200 bg-white">
-        <p className="mb-4">Política de Privacidade | Termos de uso | Contato</p>
         <p>&copy; {new Date().getFullYear()} A Arte dos Incensos Artesanais. Todos os direitos reservados.</p>
       </footer>
 
-      {/* ADDITIONAL STYLES FOR ANIMATIONS */}
       <style>{`
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes scale-up { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .animate-fade-in { animation: fade-in 0.3s ease-out; }
         .animate-scale-up { animation: scale-up 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .scrollbar-thin::-webkit-scrollbar { width: 4px; }
-        .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
-        .scrollbar-thin::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
       `}</style>
     </div>
   );
