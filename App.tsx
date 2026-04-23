@@ -19,28 +19,28 @@ const CHECKOUT_COMPLETE_BASE = 'https://indec-digital.mycartpanda.com/checkout/2
 const CHECKOUT_VIP_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032936:1'; 
 
 const IMAGES = {
-  capa: 'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/Capa_Inicio_ezxhme.webp',
-  incensos: 'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297844/Incensos_vod93g.webp',
+  capa: 'https://i.ibb.co/jPStrNgP/Capa-Inicio.webp',
+  incensos: 'https://i.ibb.co/pBV8WBLr/Incensos.webp',
   depoimentos: [
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/Depoimento_01_jbadrl.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/Depoimento_02_xkllwr.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297844/Depoimento_03_q9lwre.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297844/Depoimento_04_ajmyhf.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297844/Depoimento_05_nqip50.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297844/Depoimento_06_x4b1sc.webp'
+    'https://i.ibb.co/tTytHwBv/Depo-1.webp',
+    'https://i.ibb.co/sJNdQYLh/Depo-3.webp',
+    'https://i.ibb.co/gF9n98z4/Depo-2.webp',
+    'https://i.ibb.co/LdCgdcHb/Depo-4.webp',
+    'https://i.ibb.co/nsg2xwjC/Depo-6.webp',
+    'https://i.ibb.co/9Q2vbXb/Depo-5.webp'
   ],
   passos: [
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297845/Passos-_1__jzmgaf.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297846/Passos-_2__qqzpvs.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297846/Passos-_3__hmxynl.webp'
+    'https://i.ibb.co/GvTTgbSD/Passos-1.webp',
+    'https://i.ibb.co/5XZ22RBn/Passos-2.webp',
+    'https://i.ibb.co/zH2nGn12/Passos-3.webp'
   ],
   bonus: [
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/B%C3%B4nus-_1__it3t0m.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/B%C3%B4nus-_2__exuaeo.webp',
-    'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297843/B%C3%B4nus-_3__swwjdf.webp'
+    'https://i.ibb.co/99Tz4bg1/B-nus-1.webp',
+    'https://i.ibb.co/prs3LcjT/B-nus-2.webp',
+    'https://i.ibb.co/cXNhDY5g/B-nus-3.webp'
   ],
-  mockupPreco: 'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297844/Mockup_Pre%C3%A7o_kiatre.webp',
-  garantia: 'https://res.cloudinary.com/drcqck3r9/image/upload/v1769297844/Garantia_miktyg.webp'
+  mockupPreco: 'https://i.ibb.co/xPtgsNv/Mockup-Pre-o.webp',
+  garantia: 'https://i.ibb.co/pv6zQcGj/Garantia.webp'
 };
 
 const App: React.FC = () => {
