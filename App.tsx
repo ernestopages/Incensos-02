@@ -1,5 +1,5 @@
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 
 // Constants
 const COLORS = {
@@ -14,9 +14,7 @@ const COLORS = {
   guaranteeButton: '#3d7a36'
 };
 
-const CHECKOUT_BASIC_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032899:1';
 const CHECKOUT_COMPLETE_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032940:1'; 
-const CHECKOUT_VIP_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032936:1'; 
 
 const IMAGES = {
   capa: 'https://i.ibb.co/jPStrNgP/Capa-Inicio.webp',
@@ -44,7 +42,6 @@ const IMAGES = {
 };
 
 const App: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const offerAnchorRef = useRef<HTMLDivElement>(null);
 
@@ -76,94 +73,9 @@ const App: React.FC = () => {
     }
   };
 
-  const handleBasicClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen font-poppins text-gray-900 pb-10 overflow-x-hidden bg-[#f3efe5]">
       
-      {/* UPGRADE MODAL */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 bg-black/85 backdrop-blur-sm animate-fade-in overflow-hidden">
-          <div className="bg-white w-full max-w-[420px] rounded-[2rem] overflow-hidden shadow-2xl relative animate-scale-up max-h-[98vh] flex flex-col">
-            
-            <div className="bg-[#cc2121] py-3 md:py-5 px-4 text-center text-white shrink-0 relative">
-              <button 
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-2 right-2 text-white/80 hover:text-white transition-colors z-50 p-2"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-              
-              <div className="inline-block bg-white/20 px-2 py-0.5 rounded-full text-[9px] font-black uppercase mb-1.5 border border-white/20 tracking-wider">
-                ✨ OFERTA ESPECIAL DE UPGRADE
-              </div>
-              
-              <h2 className="text-lg md:text-2xl font-black leading-tight mb-1 uppercase italic tracking-tighter whitespace-nowrap">
-                ESPERA! VOCÊ GANHOU <br /> UM SUPER DESCONTO 🎁
-              </h2>
-              <p className="text-[10px] md:text-[11px] font-medium opacity-90 mx-auto leading-tight">
-                Não comece pela metade. Leve o acesso VIP completo hoje.
-              </p>
-            </div>
-
-            <div className="p-4 md:p-6 overflow-y-auto no-scrollbar flex-grow">
-              <div className="flex flex-col items-center">
-                
-                <div className="relative mb-3 md:mb-5 text-center">
-                  <p className="text-gray-400 line-through text-[10px] font-black mb-0">De R$ 19,90</p>
-                  <div className="flex items-start justify-center text-[#22c55e]">
-                    <span className="text-lg md:text-2xl font-black mt-1 md:mt-3 mr-1">R$</span>
-                    <span className="text-6xl md:text-7xl font-black leading-none tracking-tighter">15,90</span>
-                  </div>
-                </div>
-
-                <div className="w-full bg-[#f8fafc] rounded-2xl p-3 md:p-5 mb-4 md:mb-6 border border-slate-100">
-                  <p className="text-[8px] md:text-[9px] font-black text-slate-400 uppercase mb-2.5 text-center tracking-[0.15em]">O QUE VOCÊ GANHA NO PLANO VIP:</p>
-                  <ul className="space-y-1.5 md:space-y-2">
-                    {[
-                      "Mais de 30 Receitas em Vídeo",
-                      "Apostila Completa + VideoAulas",
-                      "Bônus 01: Guia Fornecedores",
-                      "Bônus 02: Como Viver de Incensos",
-                      "Bônus 03: Como Fazer Porta Incensos",
-                      "Acesso Vitalício + Atualizações"
-                    ].map((benefit, i) => (
-                      <li key={i} className="flex items-center gap-2 text-[11px] md:text-sm font-bold text-slate-700 leading-tight">
-                        <div className="w-3.5 h-3.5 md:w-5 md:h-5 bg-[#22c55e] rounded flex items-center justify-center shrink-0">
-                          <svg className="w-2.5 h-2.5 md:w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path d="M5 13l4 4L19 7" /></svg>
-                        </div>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="w-full space-y-4">
-                  <a 
-                    href={getCheckoutUrl(CHECKOUT_VIP_BASE)}
-                    target="_self"
-                    className="block w-full bg-[#22c55e] hover:bg-[#16a34a] text-white py-3.5 md:py-5 px-2 rounded-2xl text-xs md:text-lg font-black uppercase shadow-lg transition-all hover:scale-[1.02] active:scale-95 text-center leading-tight whitespace-nowrap"
-                  >
-                    QUERO O PLANO COMPLETO COM DESCONTO
-                  </a>
-                  
-                  <a 
-                    href={getCheckoutUrl(CHECKOUT_BASIC_BASE)}
-                    target="_self"
-                    className="block w-full text-center text-slate-500 hover:text-slate-800 text-[10px] md:text-[12px] font-black uppercase underline decoration-2 underline-offset-4 transition-colors p-2 bg-gray-50 rounded-xl whitespace-nowrap"
-                  >
-                    NÃO, OBRIGADO. QUERO CONTINUAR POR R$ 10,00
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* SECTION 1: HERO */}
       <section className="px-5 pt-8 pb-4 flex flex-col items-center text-center max-w-4xl mx-auto">
         <h1 className="text-2xl md:text-5xl font-black mb-4 leading-tight" style={{ color: COLORS.headline }}>
@@ -416,30 +328,24 @@ const App: React.FC = () => {
       <section className="py-12 md:py-20 px-4 md:px-8 bg-white overflow-visible">
         <div className="max-w-6xl mx-auto text-center overflow-visible">
           <h2 className="text-2xl md:text-4xl font-black mb-8 md:mb-16 text-gray-900 uppercase tracking-tight leading-tight px-2">
-            ESCOLHA A MELHOR <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>OPÇÃO PARA VOCÊ:</span>
+            GARANTA SEU <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>ACESSO COMPLETO AO APLICATIVO:</span>
           </h2>
-          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-stretch gap-10 md:gap-14 max-w-6xl mx-auto overflow-visible p-1">
-            {/* 1. ACESSO BÁSICO */}
-            <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-2xl border border-gray-100 flex flex-col h-full transition-all duration-300 self-center w-full max-w-lg mx-auto">
-              <div className="flex flex-col items-center mb-4 md:mb-6">
-                <span className="text-xs md:text-sm font-black uppercase text-gray-600 mb-2 italic tracking-[0.2em]">Acesso Básico</span>
-                <h3 className="text-xl md:text-2xl font-black mb-4 md:mb-6 px-2 leading-tight" style={{ color: COLORS.title }}>Guia A Arte dos <br /> Incensos Artesanais</h3>
-                <div className="text-center mb-4 md:mb-6"><div className="flex items-start justify-center" style={{ color: '#166534' }}><span className="text-2xl md:text-3xl font-black mt-2 md:mt-3 mr-1">R$</span><span className="text-7xl md:text-8xl font-black leading-none">10</span></div></div>
-              </div>
-              <div className="space-y-3 md:space-y-4 text-left mb-6 md:mb-10 flex-grow w-full px-4">{["<b>+20 Receitas</b> de Incensos Artesanais", "Acesso <b>Vitalício</b>", "<b>7 Dias</b> de Garantia"].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-3"><span className="text-[#2d5a27] font-black text-xl">✅</span><p className="text-base md:text-lg text-gray-700 font-bold" dangerouslySetInnerHTML={{ __html: item }} /></div>
-              ))}</div>
-              <div className="px-2"><button onClick={handleBasicClick} style={{ backgroundColor: COLORS.button }} className="block w-full text-white py-4 md:py-6 px-4 rounded-[1.5rem] text-[13px] md:text-xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center whitespace-nowrap">QUERO O ACESSO BÁSICO</button></div>
-            </div>
-
-            {/* 2. ACESSO COMPLETO */}
-            <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 self-center w-full max-w-xl mx-auto lg:transform lg:scale-105 mt-4 md:mt-0">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-8 py-3 rounded-full shadow-2xl z-30 text-white font-black uppercase text-[10px] md:text-sm tracking-[0.2em] whitespace-nowrap border-[4px] border-white" style={{ background: COLORS.premiumGradient }}>🚀 MELHOR ESCOLHA</div>
+          <div className="flex justify-center max-w-6xl mx-auto overflow-visible p-1">
+            {/* ACESSO COMPLETO */}
+            <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 w-full max-w-xl mx-auto">
               <div className="flex flex-col items-center mb-6 pt-6"><h3 className="text-2xl md:text-4xl font-black uppercase mb-6 tracking-tighter italic text-center leading-none" style={{ color: '#ec2f4b' }}>ACESSO COMPLETO</h3><img src={IMAGES.mockupPreco} alt="Oferta" className="relative w-full max-w-[380px] h-auto drop-shadow-2xl mb-8" /></div>
-              <div className="space-y-3 md:space-y-5 text-left mb-6 flex-grow w-full border-t border-b border-gray-100 py-6 px-4">{["Guia A Arte dos Incensos Artesanais", "<b>+30 Receitas</b> em Vídeo", "<span class='bg-[#ec2f4b] text-white px-3 py-1.5 rounded-xl shadow-lg inline-block text-[11px] md:text-base font-extrabold'>Curso em VideoAulas + Apostila</span>", "Bônus 01: Fornecedores", "Bônus 02: Viver de Incensos", "Bônus 03: Porta Incensos", "Acesso <b>Vitalício + Atualizações</b>", "<b>7 Dias</b> de Garantia"].map((item, idx) => (
+              <div className="space-y-3 md:space-y-5 text-left mb-6 flex-grow w-full border-t border-b border-gray-100 py-6 px-4">{[
+                "App A Arte dos Incensos Artesanais", 
+                "<b>+20 Receitas</b> em Vídeo", 
+                "<span class='bg-[#ec2f4b] text-white px-3 py-1.5 rounded-xl shadow-lg inline-block text-[11px] md:text-base font-extrabold'>Curso em VideoAulas + Apostila</span>", 
+                "Acesso enviando imediatamente para o seu <span class='text-[#128C7E]'>WhatsApp</span>",
+                "<b>+3 Bônus Exclusivos</b>",
+                "Acesso <b>Vitalício + Atualizações</b>", 
+                "<b>7 Dias</b> de Garantia"
+              ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3"><span className="text-[#ec2f4b] font-black text-xl md:text-2xl shrink-0">✅</span><p className="text-sm md:text-xl text-gray-800 font-extrabold leading-tight" dangerouslySetInnerHTML={{ __html: item }} /></div>
               ))}</div>
-              <div className="text-center mb-8 relative"><div className="flex items-start justify-center" style={{ color: COLORS.vibrantGreen }}><span className="text-4xl md:text-6xl font-black mt-4 md:mt-8 mr-1 tracking-tighter">R$</span><span className="text-7xl md:text-[10rem] font-black leading-none tracking-tighter drop-shadow-2xl">19,90</span></div></div>
+              <div className="text-center mb-8 relative"><div className="flex items-start justify-center" style={{ color: COLORS.vibrantGreen }}><span className="text-4xl md:text-6xl font-black mt-4 md:mt-8 mr-1 tracking-tighter">R$</span><span className="text-7xl md:text-[10rem] font-black leading-none tracking-tighter drop-shadow-2xl">27,00</span></div></div>
               <div className="px-2 md:px-4 pb-4">
                 <a 
                   href={getCheckoutUrl(CHECKOUT_COMPLETE_BASE)} 
@@ -447,8 +353,12 @@ const App: React.FC = () => {
                   style={{ background: COLORS.premiumGradient }} 
                   className="block w-full text-white py-4 md:py-8 px-4 rounded-full text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
                 >
-                  QUERO O ACESSO COMPLETO
+                  QUERO COMPRAR AGORA
                 </a>
+                <div className="mt-6 flex items-center justify-center gap-2 text-gray-400 font-bold uppercase text-[9px] md:text-[11px] tracking-widest opacity-70">
+                  <svg className="w-3 h-3 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M2.166 4.9L10 1.55l7.834 3.35a1 1 0 01.666.945V10c0 5.825-4.432 10.038-8.5 10.038-4.068 0-8.5-4.213-8.5-10.038V5.845a1 1 0 01.666-.945zM10 3.177L3.5 5.962V10c0 4.638 3.5 8.038 6.5 8.038s6.5-3.4 6.5-8.038V5.962L10 3.177zM9.5 7.5a.5.5 0 01.5.5v2.5a.5.5 0 01-1 0v-2a.5.5 0 00-.5-.5h-1a.5.5 0 000 1h.5v2a1.5 1.5 0 001.5 1.5h1a.5.5 0 000-1h-1a.5.5 0 01-.5-.5V8a.5.5 0 01.5-.5z" clipRule="evenodd" /></svg>
+                  <span>Compra segura . Pagamento Único</span>
+                </div>
               </div>
             </div>
           </div>
