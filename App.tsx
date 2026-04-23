@@ -37,7 +37,7 @@ const IMAGES = {
     'https://i.ibb.co/prs3LcjT/B-nus-2.webp',
     'https://i.ibb.co/cXNhDY5g/B-nus-3.webp'
   ],
-  mockupPreco: 'https://i.ibb.co/xPtgsNv/Mockup-Pre-o.webp',
+  mockupPreco: 'https://i.ibb.co/YFFBy23X/Chat-GPT-Image-23-de-abr-de-2026-16-29-56.png',
   garantia: 'https://i.ibb.co/pv6zQcGj/Garantia.webp'
 };
 
@@ -321,31 +321,37 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* INVISIBLE ANCHOR FOR PRECISE SCROLLING */}
-      <div ref={offerAnchorRef} className="scroll-mt-24"></div>
-
       {/* SECTION 10: OFERTAS */}
       <section className="py-12 md:py-20 px-4 md:px-8 bg-white overflow-visible">
-        <div className="max-w-6xl mx-auto text-center overflow-visible">
+        <div ref={offerAnchorRef} className="max-w-6xl mx-auto text-center overflow-visible scroll-mt-10">
           <h2 className="text-2xl md:text-4xl font-black mb-8 md:mb-16 text-gray-900 uppercase tracking-tight leading-tight px-2">
-            GARANTA SEU <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>ACESSO COMPLETO AO APLICATIVO:</span>
+            GARANTA SEU ACESSO COMPLETO AO <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>APLICATIVO A ARTE DOS INCENSOS ARTESANAIS:</span>
           </h2>
           <div className="flex justify-center max-w-6xl mx-auto overflow-visible p-1">
             {/* ACESSO COMPLETO */}
-            <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-6 md:p-10 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 w-full max-w-xl mx-auto">
-              <div className="flex flex-col items-center mb-6 pt-6"><h3 className="text-2xl md:text-4xl font-black uppercase mb-6 tracking-tighter italic text-center leading-none" style={{ color: '#ec2f4b' }}>ACESSO COMPLETO</h3><img src={IMAGES.mockupPreco} alt="Oferta" className="relative w-full max-w-[380px] h-auto drop-shadow-2xl mb-8" /></div>
-              <div className="space-y-3 md:space-y-5 text-left mb-6 flex-grow w-full border-t border-b border-gray-100 py-6 px-4">{[
-                "App A Arte dos Incensos Artesanais", 
-                "<b>+20 Receitas</b> em Vídeo", 
-                "<span class='bg-[#ec2f4b] text-white px-3 py-1.5 rounded-xl shadow-lg inline-block text-[11px] md:text-base font-extrabold'>Curso em VideoAulas + Apostila</span>", 
+            <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-4 md:p-8 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 w-full max-w-xl mx-auto">
+              <div className="flex flex-col items-center mb-1 pt-1"><img src={IMAGES.mockupPreco} alt="Oferta" className="relative w-full max-w-[450px] h-auto drop-shadow-2xl mb-2 rounded-2xl md:rounded-[2rem]" /></div>
+              <div className="space-y-2 md:space-y-4 text-left mb-4 flex-grow w-full border-t border-b border-gray-100 py-4 px-4">{[
+                "Acesso ao App A Arte dos Incensos Artesanais", 
+                "<b>+20 Receitas</b> com passo a passo em Vídeo", 
                 "Acesso enviando imediatamente para o seu <span class='text-[#128C7E]'>WhatsApp</span>",
-                "<b>+3 Bônus Exclusivos</b>",
+                "<b>+3 Presentes Especiais Exclusivos</b>",
                 "Acesso <b>Vitalício + Atualizações</b>", 
                 "<b>7 Dias</b> de Garantia"
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-3"><span className="text-[#ec2f4b] font-black text-xl md:text-2xl shrink-0">✅</span><p className="text-sm md:text-xl text-gray-800 font-extrabold leading-tight" dangerouslySetInnerHTML={{ __html: item }} /></div>
+                <div key={idx} className="flex items-center gap-3"><span className="text-[#ec2f4b] font-black text-xl md:text-2xl shrink-0">✅</span><p className="text-xs md:text-xl text-gray-800 font-extrabold leading-tight" dangerouslySetInnerHTML={{ __html: item }} /></div>
               ))}</div>
-              <div className="text-center mb-8 relative"><div className="flex items-start justify-center" style={{ color: COLORS.vibrantGreen }}><span className="text-4xl md:text-6xl font-black mt-4 md:mt-8 mr-1 tracking-tighter">R$</span><span className="text-7xl md:text-[10rem] font-black leading-none tracking-tighter drop-shadow-2xl">27,00</span></div></div>
+              <div className="text-center mb-4 relative">
+                <div className="flex flex-col items-center mb-1">
+                  <p className="text-[9px] md:text-sm font-bold text-gray-900 uppercase tracking-widest leading-none">
+                    De <span className="text-red-600 line-through">R$99,90</span> por apenas
+                  </p>
+                </div>
+                <div className="flex items-start justify-center" style={{ color: COLORS.vibrantGreen }}>
+                  <span className="text-3xl md:text-6xl font-black mt-2 md:mt-8 mr-1 tracking-tighter">R$</span>
+                  <span className="text-6xl md:text-[10rem] font-black leading-none tracking-tighter drop-shadow-2xl">27,00</span>
+                </div>
+              </div>
               <div className="px-2 md:px-4 pb-4">
                 <a 
                   href={getCheckoutUrl(CHECKOUT_COMPLETE_BASE)} 
@@ -353,7 +359,7 @@ const App: React.FC = () => {
                   style={{ background: COLORS.premiumGradient }} 
                   className="block w-full text-white py-4 md:py-8 px-4 rounded-full text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
                 >
-                  QUERO COMPRAR AGORA
+                  QUERO ACESSAR AGORA
                 </a>
                 <div className="mt-6 flex items-center justify-center gap-2 text-gray-400 font-bold uppercase text-[9px] md:text-[11px] tracking-widest opacity-70">
                   <svg className="w-3 h-3 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M2.166 4.9L10 1.55l7.834 3.35a1 1 0 01.666.945V10c0 5.825-4.432 10.038-8.5 10.038-4.068 0-8.5-4.213-8.5-10.038V5.845a1 1 0 01.666-.945zM10 3.177L3.5 5.962V10c0 4.638 3.5 8.038 6.5 8.038s6.5-3.4 6.5-8.038V5.962L10 3.177zM9.5 7.5a.5.5 0 01.5.5v2.5a.5.5 0 01-1 0v-2a.5.5 0 00-.5-.5h-1a.5.5 0 000 1h.5v2a1.5 1.5 0 001.5 1.5h1a.5.5 0 000-1h-1a.5.5 0 01-.5-.5V8a.5.5 0 01.5-.5z" clipRule="evenodd" /></svg>
@@ -417,7 +423,7 @@ const App: React.FC = () => {
             <svg className="w-5 h-5 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            QUERO COMPRAR AGORA
+            QUERO ACESSAR AGORA
           </button>
         </div>
       </section>
