@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 // Constants
 const COLORS = {
@@ -18,7 +18,6 @@ const CHECKOUT_COMPLETE_BASE = 'https://indec-digital.mycartpanda.com/checkout/2
 
 const IMAGES = {
   capa: 'https://i.ibb.co/jPStrNgP/Capa-Inicio.webp',
-  incensos: 'https://i.ibb.co/pBV8WBLr/Incensos.webp',
   depoimentos: [
     'https://i.ibb.co/tTytHwBv/Depo-1.webp',
     'https://i.ibb.co/sJNdQYLh/Depo-3.webp',
@@ -73,6 +72,13 @@ const App: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    const s = document.createElement("script");
+    s.src = "https://scripts.converteai.net/3aba438a-f503-4e1c-acf0-ca34400c1e91/players/69ed23fe715b20730f8d2f5a/v4/player.js";
+    s.async = true;
+    document.head.appendChild(s);
+  }, []);
+
   return (
     <div className="min-h-screen font-poppins text-gray-900 pb-10 overflow-x-hidden bg-[#f3efe5]">
       
@@ -87,16 +93,14 @@ const App: React.FC = () => {
           Nova <span style={{ color: COLORS.highlight }}>FONTE DE RENDA...</span>
         </h1>
         <p className="text-base md:text-xl font-medium mb-6 text-gray-700">
-          Tudo em casa, de forma econômica e mesmo que você nunca tenha feito antes!
+          Tudo em casa, em uma plataforma com vídeos passo a passo, de forma econômica e mesmo que você nunca tenha feito antes!
         </p>
         
-        <div className="w-full max-w-lg mb-8">
-          <img 
-            src={IMAGES.capa} 
-            alt="Capa do Guia de Incensos" 
-            className="w-full h-auto rounded-3xl shadow-2xl"
-            loading="lazy"
-          />
+        <div className="w-full max-w-3xl mb-8 overflow-hidden rounded-2xl shadow-2xl bg-black aspect-video flex items-center justify-center">
+          <vturb-smartplayer 
+            id="vid-69ed23fe715b20730f8d2f5a" 
+            style={{ display: 'block', margin: '0 auto', width: '100%' }}
+          ></vturb-smartplayer>
         </div>
 
         <button 
@@ -165,8 +169,8 @@ const App: React.FC = () => {
       <section className="bg-white py-12 px-5">
         <div className="max-w-5xl mx-auto flex flex-col items-center">
           <img 
-            src={IMAGES.incensos} 
-            alt="Incensos Naturais" 
+            src={IMAGES.capa} 
+            alt="Colagem de Incensos Artesanais" 
             className="w-full max-w-xl h-auto rounded-[2rem] mb-8 shadow-2xl border-8 border-gray-50"
             loading="lazy"
           />
@@ -218,7 +222,7 @@ const App: React.FC = () => {
       <section className="py-12 px-5 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase leading-tight px-4" style={{ color: COLORS.title }}>
-            Junte-se a mais de <span style={{ color: COLORS.highlight }}>1.387 pessoas</span> que já descobriram o power dos incensos naturais!
+            Junte-se a mais de <span style={{ color: COLORS.highlight }}>1.387 pessoas</span> que já descobriram o poder dos incensos naturais!
           </h2>
           <div className="relative group px-2 md:px-0">
             <button 
