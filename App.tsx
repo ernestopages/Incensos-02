@@ -28,9 +28,9 @@ const IMAGES = {
     'https://i.ibb.co/9Q2vbXb/Depo-5.webp'
   ],
   passos: [
-    'https://i.ibb.co/GvTTgbSD/Passos-1.webp',
-    'https://i.ibb.co/5XZ22RBn/Passos-2.webp',
-    'https://i.ibb.co/zH2nGn12/Passos-3.webp'
+    'https://i.ibb.co/dsyctzcV/Inicio-pronto.webp',
+    'https://i.ibb.co/1ft5TRgy/Receitas-pronto.webp',
+    'https://i.ibb.co/8n53BMmz/Ingredientes-pronto.webp'
   ],
   bonus: [
     'https://i.ibb.co/99Tz4bg1/B-nus-1.webp',
@@ -112,11 +112,11 @@ const App: React.FC = () => {
       <section className="relative my-6 px-4">
         <div className="bg-white rounded-[3rem] shadow-2xl mx-auto max-w-4xl p-8 md:p-14 border border-gray-100">
           <h2 className="text-xl md:text-3xl font-black mb-8 text-center uppercase tracking-tight" style={{ color: COLORS.title }}>
-            🌟 PARA QUEM É ESSE <span style={{ color: COLORS.highlight }}>GUIA?</span>
+            🌟 PARA QUEM É ESSE <span style={{ color: COLORS.highlight }}>MATERIAL?</span>
           </h2>
           <ul className="space-y-4 text-base md:text-xl text-gray-800">
             {[
-              "Para quem <b>nunca fez</b> incensos na vida e quer <b>começar do zero</b>.",
+              "Para quem <b>nunca fez</b> incensos na vida e quer <b>começar do zero</b> assistindo <b>VideoAulas</b>.",
               "Para quem <b>já tentou</b>, mas <b>não acertou</b> a fórmula, a <b>queima</b> ou os <b>materiais</b>.",
               "Para quem quer <b>produzir para vender</b> e ter uma <b>renda extra</b> ou até mesmo <b>viver disso</b>.",
               "Para quem quer <b>incensos naturais</b>, artesanais, terapêuticos, com <b>cheiro agradável</b> e energia limpa."
@@ -182,7 +182,7 @@ const App: React.FC = () => {
       {/* SECTION 5: RECEITAS DO GUIA */}
       <section className="py-12 px-5 max-w-5xl mx-auto">
         <p className="text-xl md:text-2xl font-black mb-10 text-center text-gray-900 px-4">
-          No guia <span className="text-[#4c0505] uppercase">A Arte dos Incensos Artesanais</span>, você vai aprender a criar mais de 20 tipos de incensos naturais, incluindo:
+          Na plataforma <span className="text-[#4c0505] uppercase">A Arte dos Incensos Artesanais</span>, você vai aprender a criar mais de 23 tipos de incensos naturais, incluindo:
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -288,10 +288,10 @@ const App: React.FC = () => {
       <section className="py-12 px-5 bg-white">
         <div className="max-w-4xl mx-auto bg-[#f3efe5] rounded-[4rem] p-8 md:p-14 shadow-xl border border-gray-100">
           <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase tracking-tight text-gray-900 leading-tight">
-            TUDO O QUE VOCÊ <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>VAI APRENDER</span>
+            TUDO O QUE VOCÊ <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>VAI APRENDER HOJE:</span>
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {["<b>+20 Receitas</b> Exclusivas", "Modo de <b>Preparo</b> Detalhado", "<b>Lista</b> de Ingredientes Naturais", "<b>Combinações</b> de Aromas e Funções", "<b>Técnicas</b> de Mistura e Modelagem", "Fórmulas Prontas e <b>Segredos</b> de Alquimia", "Acesso <b>Vitalício</b> e <b>Atualizações</b>"].map((item, idx) => (
+            {["<b>+23 Receitas</b> de Incensos Especiais", "Passo a passo em vídeo", "Modo de <b>Preparo</b> Detalhado", "<b>Lista</b> de Ingredientes Naturais", "<b>Combinações</b> de Aromas e Funções", "<b>Técnicas</b> de Mistura e Modelagem", "Fórmulas Prontas e <b>Segredos</b> de Alquimia"].map((item, idx) => (
               <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm">
                 <span className="text-green-600 font-black text-2xl">✔️</span>
                 <span className="text-base md:text-xl font-bold text-gray-800 leading-tight" dangerouslySetInnerHTML={{ __html: item }} />
@@ -322,18 +322,21 @@ const App: React.FC = () => {
       </section>
 
       {/* SECTION 10: OFERTAS */}
-      <section className="py-12 md:py-20 px-4 md:px-8 bg-white overflow-visible">
+      <section className="py-8 md:py-16 px-4 md:px-8 bg-white overflow-visible">
         <div ref={offerAnchorRef} className="max-w-6xl mx-auto text-center overflow-visible scroll-mt-10">
-          <h2 className="text-2xl md:text-4xl font-black mb-8 md:mb-16 text-gray-900 uppercase tracking-tight leading-tight px-2">
-            GARANTA SEU ACESSO COMPLETO AO <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>APLICATIVO A ARTE DOS INCENSOS ARTESANAIS:</span>
+          <h2 className="text-2xl md:text-4xl font-black mb-2 md:mb-4 text-gray-900 uppercase tracking-tight leading-tight px-2">
+            GARANTA SEU ACESSO A PLATAFORMA <br className="md:hidden" /> <span style={{ color: COLORS.highlight }}>A ARTE DOS INCENSOS ARTESANAIS</span>
           </h2>
+          <p className="text-sm md:text-xl font-bold text-gray-500 mb-6 md:mb-10 tracking-tight">
+            E comece a fazer seus incensos hoje mesmo!
+          </p>
           <div className="flex justify-center max-w-6xl mx-auto overflow-visible p-1">
             {/* ACESSO COMPLETO */}
             <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-4 md:p-8 shadow-[0_30px_100px_-20px_rgba(236,47,75,0.35)] border-[5px] md:border-[6px] border-[#ec2f4b] flex flex-col h-full relative overflow-visible transition-all duration-500 w-full max-w-xl mx-auto">
               <div className="flex flex-col items-center mb-1 pt-1"><img src={IMAGES.mockupPreco} alt="Oferta" className="relative w-full max-w-[450px] h-auto drop-shadow-2xl mb-2 rounded-2xl md:rounded-[2rem]" /></div>
               <div className="space-y-2 md:space-y-4 text-left mb-4 flex-grow w-full border-t border-b border-gray-100 py-4 px-4">{[
-                "Acesso ao App A Arte dos Incensos Artesanais", 
-                "<b>+20 Receitas</b> com passo a passo em Vídeo", 
+                "Acesso a plataforma A Arte dos Incensos Artesanais", 
+                "<b>+23 Vídeos</b> com o passo a passo das receitas", 
                 "Acesso enviando imediatamente para o seu <span class='text-[#128C7E]'>WhatsApp</span>",
                 "<b>+3 Presentes Especiais Exclusivos</b>",
                 "Acesso <b>Vitalício + Atualizações</b>", 
