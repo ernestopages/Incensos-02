@@ -96,20 +96,12 @@ const App: React.FC = () => {
           Tudo em casa, em uma plataforma com vídeos passo a passo, de forma econômica e mesmo que você nunca tenha feito antes!
         </p>
         
-        <div className="w-full max-w-3xl mb-8 overflow-hidden rounded-2xl shadow-2xl bg-black aspect-video flex items-center justify-center">
+        <div className="w-full max-w-3xl mb-4 overflow-hidden rounded-2xl shadow-2xl bg-black aspect-video flex items-center justify-center">
           <vturb-smartplayer 
             id="vid-69ed23fe715b20730f8d2f5a" 
             style={{ display: 'block', margin: '0 auto', width: '100%' }}
           ></vturb-smartplayer>
         </div>
-
-        <button 
-          onClick={scrollToOffer}
-          style={{ backgroundColor: COLORS.button }}
-          className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
-        >
-          EU QUERO APRENDER AGORA!
-        </button>
       </section>
 
       {/* SECTION 2: PARA QUEM É ESSE GUIA? */}
@@ -143,7 +135,7 @@ const App: React.FC = () => {
           Se você está tentando fazer incenso sem um direcionamento claro e profissional, apostando no achismo...
         </p>
         
-        <div className="space-y-4 mb-10 text-left max-w-xl mx-auto">
+        <div className="space-y-4 text-left max-w-xl mx-auto">
           {[
             "Vai continuar <b>queimando só na ponta</b>.",
             "Vai <b>gastar material</b> à toa.",
@@ -155,14 +147,6 @@ const App: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <button 
-          onClick={scrollToOffer}
-          style={{ backgroundColor: COLORS.button }}
-          className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
-        >
-          QUERO APRENDER AGORA
-        </button>
       </section>
 
       {/* SECTION 4: VANTAGENS */}
@@ -184,7 +168,7 @@ const App: React.FC = () => {
       </section>
 
       {/* SECTION 5: RECEITAS DO GUIA */}
-      <section className="py-12 px-5 max-w-5xl mx-auto">
+      <section className="pt-12 pb-6 px-5 max-w-5xl mx-auto">
         <p className="text-xl md:text-2xl font-black mb-10 text-center text-gray-900 px-4">
           Na plataforma <span className="text-[#4c0505] uppercase">A Arte dos Incensos Artesanais</span>, você vai aprender a criar mais de 23 tipos de incensos naturais, incluindo:
         </p>
@@ -206,20 +190,10 @@ const App: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <div className="mt-10 flex justify-center">
-          <button 
-            onClick={scrollToOffer}
-            style={{ backgroundColor: COLORS.button }}
-            className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
-          >
-            QUERO LIBERAR AGORA
-          </button>
-        </div>
       </section>
 
       {/* SECTION 6: DEPOIMENTOS */}
-      <section className="py-12 px-5 bg-white overflow-hidden">
+      <section className="pt-12 pb-6 px-5 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase leading-tight px-4" style={{ color: COLORS.title }}>
             Junte-se a mais de <span style={{ color: COLORS.highlight }}>1.387 pessoas</span> que já descobriram o poder dos incensos naturais!
@@ -247,20 +221,11 @@ const App: React.FC = () => {
               <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" /></svg>
             </button>
           </div>
-          <div className="mt-10 flex justify-center">
-            <button 
-              onClick={scrollToOffer}
-              style={{ backgroundColor: COLORS.button }}
-              className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
-            >
-              EU TAMBÉM QUERO APRENDER
-            </button>
-          </div>
         </div>
       </section>
 
       {/* SECTION 7: TERÁ ACESSO */}
-      <section className="py-12 px-5 max-w-6xl mx-auto">
+      <section className="pt-12 pb-6 px-5 max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase leading-tight" style={{ color: COLORS.title }}>
           AQUI ESTÁ UM POUCO DO QUE VOCÊ <br className="hidden md:block" /> <span style={{ color: COLORS.highlight }}>TERÁ ACESSO</span>
           <br /><span className="text-sm md:text-xl font-bold text-gray-400 mt-2 block">(adquirindo apenas HOJE)</span>
@@ -268,7 +233,7 @@ const App: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {[
             { img: IMAGES.passos[0], title: "Início", text: "Aprenda quais materiais usar, como preparar seus ingredientes e ativar sua intenção sagrada." },
-            { img: IMAGES.passos[1], title: "Receitas", text: "Descubra mais de 20 receitas de incensos e cones energéticos para atrair paz e prosperidade." },
+            { img: IMAGES.passos[1], title: "Receitas", text: "Descubra mais de 23 receitas de incensos e cones energéticos para atrair paz e prosperidade." },
             { img: IMAGES.passos[2], title: "Ingredientes", text: "Explore os poderes das ervas e resinas para combinar aromas que elevam a vibração." }
           ].map((item, idx) => (
             <div key={idx} className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 flex flex-col h-full hover:shadow-3xl transition-shadow">
@@ -276,15 +241,6 @@ const App: React.FC = () => {
               <div className="px-8 pb-10 flex-grow flex items-center"><p className="text-base md:text-xl text-center font-bold leading-relaxed text-gray-800">{item.text}</p></div>
             </div>
           ))}
-        </div>
-        <div className="mt-12 flex justify-center">
-          <button 
-            onClick={scrollToOffer}
-            style={{ backgroundColor: COLORS.button }}
-            className="w-full md:max-w-md text-white py-3.5 md:py-6 px-4 rounded-2xl text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-105 transition-all active:scale-95 leading-none text-center flex items-center justify-center animate-pulse-subtle whitespace-nowrap"
-          >
-            QUERO COMEÇAR AGORA
-          </button>
         </div>
       </section>
 
@@ -306,7 +262,7 @@ const App: React.FC = () => {
       </section>
 
       {/* SECTION 9: BÔNUS */}
-      <section className="py-12 px-5 max-w-6xl mx-auto">
+      <section className="pt-12 pb-6 px-5 max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-4xl font-black mb-12 text-center uppercase leading-tight px-4" style={{ color: COLORS.title }}>
           E PRA TORNAR SUA JORNADA AINDA <br className="hidden md:block" /> MAIS ESPECIAL… VOCÊ VAI RECEBER <br className="hidden md:block" /> <span style={{ color: COLORS.highlight }}>3 PRESENTES EXCLUSIVOS:</span>
         </h2>
