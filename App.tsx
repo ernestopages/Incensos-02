@@ -14,7 +14,7 @@ const COLORS = {
   guaranteeButton: '#3d7a36'
 };
 
-const CHECKOUT_COMPLETE_BASE = 'https://indec-digital.mycartpanda.com/checkout/207032940:1'; 
+const CHECKOUT_COMPLETE_BASE = 'https://indec-digital.mycartpanda.com/checkout/209838809:1'; 
 
 const IMAGES = {
   capa: 'https://i.ibb.co/jPStrNgP/Capa-Inicio.webp',
@@ -93,7 +93,7 @@ const App: React.FC = () => {
           Nova <span style={{ color: COLORS.highlight }}>FONTE DE RENDA...</span>
         </h1>
         <p className="text-base md:text-xl font-medium mb-6 text-gray-700">
-          Tudo em casa, em uma plataforma com vídeos passo a passo, de forma econômica e mesmo que você nunca tenha feito antes!
+          Tudo em casa, de forma econômica e mesmo que você nunca tenha feito antes!
         </p>
         
         <div className="w-full max-w-3xl mb-4 overflow-hidden rounded-2xl shadow-2xl bg-black aspect-video flex items-center justify-center">
@@ -297,7 +297,7 @@ const App: React.FC = () => {
               <div className="space-y-2 md:space-y-4 text-left mb-4 flex-grow w-full border-t border-b border-gray-100 py-4 px-4">{[
                 "Acesso a plataforma A Arte dos Incensos Artesanais", 
                 "<b>+23 Vídeos</b> com o passo a passo das receitas", 
-                "Acesso enviando imediatamente para o seu <span class='text-[#128C7E]'>WhatsApp</span>",
+                "Acesso enviando imediatamente",
                 "<b>+3 Presentes Especiais Exclusivos</b>",
                 "Acesso <b>Vitalício + Atualizações</b>", 
                 "<b>7 Dias</b> de Garantia"
@@ -322,7 +322,7 @@ const App: React.FC = () => {
                   style={{ background: COLORS.premiumGradient }} 
                   className="block w-full text-white py-4 md:py-8 px-4 rounded-full text-[13px] md:text-2xl font-black uppercase shadow-2xl hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
                 >
-                  QUERO ACESSAR AGORA
+                  QUERO COMPRAR AGORA
                 </a>
                 <div className="mt-6 flex items-center justify-center gap-2 text-gray-400 font-bold uppercase text-[9px] md:text-[11px] tracking-widest opacity-70">
                   <svg className="w-3 h-3 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M2.166 4.9L10 1.55l7.834 3.35a1 1 0 01.666.945V10c0 5.825-4.432 10.038-8.5 10.038-4.068 0-8.5-4.213-8.5-10.038V5.845a1 1 0 01.666-.945zM10 3.177L3.5 5.962V10c0 4.638 3.5 8.038 6.5 8.038s6.5-3.4 6.5-8.038V5.962L10 3.177zM9.5 7.5a.5.5 0 01.5.5v2.5a.5.5 0 01-1 0v-2a.5.5 0 00-.5-.5h-1a.5.5 0 000 1h.5v2a1.5 1.5 0 001.5 1.5h1a.5.5 0 000-1h-1a.5.5 0 01-.5-.5V8a.5.5 0 01.5-.5z" clipRule="evenodd" /></svg>
@@ -339,7 +339,7 @@ const App: React.FC = () => {
         <h2 className="text-2xl md:text-4xl font-black mb-10 text-center uppercase tracking-tight" style={{ color: COLORS.title }}>DÚVIDAS FREQUENTES</h2>
         <div className="space-y-6">
           {[
-            { q: "Como irei receber o meu acesso ao guia?", a: "O seu acesso ao guia ou curso será enviado imediatamente para o seu e-mail após a aprovação do seu pagamento, podendo começar imediatamente a fazer os seus incensos artesanais." },
+            { q: "Como irei receber o meu acesso?", a: "O seu acesso a plataforma com as videoaulas será enviado imediatamente para o seu e-mail após a aprovação do seu pagamento, podendo começar imediatamente a fazer os seus incensos artesanais." },
             { q: "É apenas um único pagamento?", a: "Sim, você paga apenas uma vez e tem acesso vitalício a todo o conteúdo e as futuras atualizações." }
           ].map((item, idx) => (
             <div key={idx} className="bg-white p-8 md:p-10 rounded-[3rem] shadow-xl border border-gray-100 transition-all hover:shadow-2xl">
@@ -378,16 +378,16 @@ const App: React.FC = () => {
             ✨ Permita-se viver a experiência de criar seus próprios incensos artesanais e transformar sua energia, sua casa e sua vida com esse conhecimento unique!
           </p>
 
-          <button 
-            onClick={scrollToOffer}
+          <a 
+            href={getCheckoutUrl(CHECKOUT_COMPLETE_BASE)}
             style={{ backgroundColor: COLORS.guaranteeButton }}
             className="flex items-center justify-center gap-3 w-full md:max-w-2xl text-white py-4 md:py-8 px-4 rounded-xl text-[13px] md:text-[28px] font-black uppercase shadow-[0_12px_30px_rgba(61,122,54,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all active:scale-95 leading-none text-center animate-pulse-subtle whitespace-nowrap"
           >
             <svg className="w-5 h-5 md:w-9 md:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            QUERO ACESSAR AGORA
-          </button>
+            QUERO COMPRAR AGORA
+          </a>
         </div>
       </section>
 
