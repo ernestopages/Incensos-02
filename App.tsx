@@ -36,7 +36,7 @@ const IMAGES = {
     'https://i.ibb.co/prs3LcjT/B-nus-2.webp',
     'https://i.ibb.co/cXNhDY5g/B-nus-3.webp'
   ],
-  mockupPreco: 'https://i.ibb.co/YFFBy23X/Chat-GPT-Image-23-de-abr-de-2026-16-29-56.png',
+  mockupPreco: 'https://i.ibb.co/pv68TSQ3/Chat-GPT-Image-25-de-abr-de-2026-14-25-29.webp',
   garantia: 'https://i.ibb.co/pv6zQcGj/Garantia.webp'
 };
 
